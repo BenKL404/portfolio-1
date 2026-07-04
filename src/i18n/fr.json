@@ -67,6 +67,18 @@
       {
         "title": "Full-Stack & CI/CD",
         "description": "Livraison de solutions complètes avec déploiement sur VPS Linux, Docker et pipelines GitHub Actions pour une mise en production sans friction."
+      },
+      {
+        "title": "Designer à mes heures",
+        "description": "Je ne suis pas le designer typique derrière Photoshop à ajuster des pixels. Plongé dans les feuilles de style, ajustant les polices et imaginant des mises en page, c'est là que vous me trouverez (~_^)."
+      },
+      {
+        "title": "SEO Marketing",
+        "description": "Besoin que votre site soit mieux référencé ? Le SEO pénalise peut-être votre site. J'audite les sites web, identifie les erreurs critiques et les résous."
+      },
+      {
+        "title": "Marketing Digital",
+        "description": "J'identifie et évalue les nouvelles technologies numériques et utilise des outils d'analyse web pour mesurer le trafic et optimiser les campagnes marketing."
       }
     ]
   },
@@ -79,35 +91,94 @@
     "title": "Ce que j'ai construit",
     "items": [
       {
-        "name": "LKM Player – Lecteur Audio Local",
-        "type": "Projet open source",
-        "description": "Lecteur audio mobile Flutter 100 % local : scan de bibliothèque, playlists, paroles synchronisées (.lrc, tags, API), égaliseur, stats et suggestions. Zéro compte, zéro pub, zéro tracking.",
-        "highlights": ["Paroles synchronisées (3 sources)", "Lecture en arrière-plan", "Architecture Clean Feature-First", "Open source · MIT"]
-      },
-      {
-        "name": "TogoMarché — Marketplace e-commerce",
-        "type": "Projet web",
-        "description": "Marketplace e-commerce : catalogue, panier, recherche et interface moderne. Déploiement edge sur Cloudflare Workers.",
-        "highlights": ["Déploiement edge", "Interface moderne", "Recherche & panier"]
+        "name": "LK Vault - Gestion de serveurs et SSH",
+        "type": "Web App",
+        "description": "Outil de gestion de serveurs et connexions SSH avec workflows d'intégration et de déploiement automatisés.",
+        "highlights": ["Gestion de serveurs", "Workflows CI/CD", "Déploiement automatisé"]
       },
       {
         "name": "LOKI — Loky Application",
-        "type": "Application desktop",
+        "type": "Desktop App",
         "description": "Application desktop Electron pour explorer visuellement une base PostgreSQL (tables/vues, filtres, jointures, requêtes rapides) et exporter (Excel, PDF, CSV, PNG).",
-        "highlights": ["Recherche avancée", "Jointures", "Exports (Excel/PDF/CSV/PNG)"]
+        "highlights": ["Exploration PostgreSQL", "Exports multiples"]
       },
       {
         "name": "BLOC-SERVICE",
-        "type": "Web app",
-        "description": "Web app de facturation/contrôle avec authentification OAuth (Google, GitHub) et workflow de traitement.",
-        "highlights": ["OAuth Google/GitHub", "Workflow facturation", "Gestion & suivi"]
+        "type": "Web App",
+        "description": "Web app \"BLOC-SERVICE\" : gestion/suivi des factures et contrôles, avec authentification OAuth (Google, GitHub) et workflow de traitement.",
+        "highlights": ["OAuth", "Workflow facturation"]
+      },
+      {
+        "name": "KoriTech (Proxima) - SaaS RH",
+        "type": "SaaS",
+        "description": "SaaS dédié à la gestion des ressources humaines : conception de l'architecture base de données et des fonctionnalités clés.",
+        "highlights": ["Gestion RH", "Architecture BDD"]
+      },
+      {
+        "name": "LKM Player – Lecteur Audio",
+        "type": "App Mobile Open Source",
+        "description": "Lecteur audio mobile 100% local : scan bibliothèque, playlists, paroles synchronisées, égaliseur, stats d'écoute.",
+        "highlights": ["Paroles synchronisées", "Lecture hors-ligne"]
+      },
+      {
+        "name": "TogoMarché — Marketplace e-commerce",
+        "type": "Marketplace",
+        "description": "Catalogue, panier, recherche - déployé en edge sur Cloudflare Workers pour le marché togolais.",
+        "highlights": ["Déploiement edge", "Interface moderne"]
+      },
+      {
+        "name": "UrgenceVie - Plateforme Médicale",
+        "type": "Web App",
+        "description": "Plateforme de gestion des urgences et dons de sang, connectant donneurs et centres médicaux en temps réel avec notifications.",
+        "highlights": ["Temps réel", "Santé publique"]
+      },
+      {
+        "name": "AlloArtisan - Mise en relation",
+        "type": "Mobile App",
+        "description": "Application mobile permettant aux utilisateurs de trouver, contacter et réserver des artisans locaux pour divers travaux.",
+        "highlights": ["Réservation", "Géolocalisation"]
+      },
+      {
+        "name": "StockBridge API",
+        "type": "Backend API",
+        "description": "API REST haute disponibilité pour la gestion de stocks multi-entrepôts, supportant une forte charge avec un système de cache avancé.",
+        "highlights": ["Haute disponibilité", "Mise en cache"]
+      },
+      {
+        "name": "EduManager Desktop",
+        "type": "Desktop App",
+        "description": "Logiciel de gestion scolaire complet avec exports PDF/Excel automatisés pour le suivi des notes et la facturation.",
+        "highlights": ["Architecture MVC", "Exports automatisés"]
+      },
+      {
+        "name": "TogoFreelance",
+        "type": "Web Platform",
+        "description": "Plateforme centralisée de mise en relation entre entreprises togolaises et freelances qualifiés dans le numérique.",
+        "highlights": ["Mise en relation", "Profils vérifiés"]
+      },
+      {
+        "name": "PayTicket Pro API",
+        "type": "Fintech API",
+        "description": "Passerelle de paiement et billetterie intégrant Flooz et T-Money, avec gestion des transactions et génération de QR Codes sécurisés.",
+        "highlights": ["Mobile Money", "Sécurité Bancaire"]
+      },
+      {
+        "name": "CloudBuild CI",
+        "type": "DevOps Tool",
+        "description": "Pipeline personnalisé d'intégration et de déploiement continu, analysant le code et déployant automatiquement sur des conteneurs Linux.",
+        "highlights": ["Automatisation", "Déploiement Continu"]
       }
     ]
   },
   "skills": {
     "tag": "Compétences",
     "title": "Stack technique",
-    "categories": ["Frontend", "Backend", "Bases de données & DevOps"]
+    "categories": ["Frontend", "Backend", "Bases de données & DevOps"],
+    "description": [
+      "Mon approche du développement moderne s'articule autour de plusieurs écosystèmes performants. J'utilise la stack MERN (MongoDB, Express, React, Node.js) pour concevoir des applications web complètes et dynamiques avec un outillage entièrement basé sur JavaScript.",
+      "Pour le développement mobile, je m'appuie sur Flutter, le puissant framework de Google basé sur Dart. C'est un véritable atout qui me permet de créer des interfaces multiplateformes (iOS et Android) fluides et adaptatives pour n'importe quel écran.",
+      "Enfin, je maîtrise également des infrastructures robustes comme la stack LAMP/LEMP (Linux, Nginx/Apache, MySQL/PostgreSQL), qui m'offre un environnement serveur sécurisé et accélère significativement le processus de développement et de déploiement."
+    ]
   },
   "contact": {
     "tag": "Contact",
@@ -132,67 +203,82 @@
   },
   "experiences": [
     {
-      "title": "Développeur Full-Stack (Remote)",
+      "title": "Fondateur & Lead Developer",
+      "company": "LKFondation",
+      "subtitle": "Lomé, Togo",
+      "period": "2025 – Présent",
+      "tasks": [
+        "Création et gestion de l'infrastructure technique et de la stratégie de marque.",
+        "Projets clés : LK Vault, KoriTech / Proxima, UrgenceVie, AlloArtisan."
+      ]
+    },
+    {
+      "title": "Opérateur d'Enregistrement de Données Biométriques",
+      "company": "ANID",
+      "subtitle": "Lomé, Togo",
+      "period": "Avril 2025 – Avril 2026",
+      "tasks": [
+        "Enregistrement et vérification des données biométriques des usagers.",
+        "Accueil et accompagnement des citoyens, respect des procédures de confidentialité."
+      ]
+    },
+    {
+      "title": "Développeur Full-Stack",
       "company": "BuildStack Labs",
-      "subtitle": "Cotonou, Bénin",
+      "subtitle": "Cotonou, Bénin (Remote)",
       "period": "Mars – Août 2025",
       "tasks": [
-        "Développement de fonctionnalités sur une plateforme SaaS (dashboard, notifications, exports).",
-        "Pipeline CI/CD via GitHub Actions (lint, tests, déploiement).",
-        "Collaboration en équipe distribuée (Afrique de l'Ouest)."
+        "Développement de nouvelles fonctionnalités SaaS (tableaux de bord, notifications, exports).",
+        "Pipeline CI/CD via GitHub Actions (lint, tests Jest, déploiement) - livraison accélérée de 40%."
       ]
     },
     {
-      "title": "Développeur Backend Node.js (Remote)",
+      "title": "Développeur Backend Node.js",
       "company": "DataBridge Inc.",
-      "subtitle": "Dakar, Sénégal",
-      "period": "Juin – Nov 2024",
+      "subtitle": "Dakar, Sénégal (Remote)",
+      "period": "Septembre – Décembre 2024",
       "tasks": [
-        "Conception et développement d'API REST (Node.js/Express) avec authentification JWT.",
-        "Optimisation des performances via cache Redis sur endpoints critiques.",
-        "Mise en place de rate limiting et durcissement sécurité."
+        "API REST haute disponibilité pour gestion de stocks multi-entrepôts (> 800 req/min).",
+        "Cache Redis : -60% de charge BD sur les endpoints sollicités.",
+        "Sécurisation JWT/refresh tokens + rate limiting."
       ]
     },
     {
-      "title": "Développeur Full-Stack (Remote)",
+      "title": "Développeur Full-Stack",
       "company": "Startup / Client",
-      "subtitle": "Abidjan, Côte d'Ivoire",
-      "period": "Sept – Déc 2024",
+      "subtitle": "Abidjan, Côte d'Ivoire (Remote)",
+      "period": "Juin – Novembre 2024",
       "tasks": [
-        "Développement d'outils internes et d'interfaces de gestion.",
-        "Collaboration à distance avec l'équipe technique."
+        "Outils internes et interfaces de gestion, collaboration remote."
       ]
     },
     {
       "title": "Développeur Full-Stack (Stage)",
       "company": "PayTicket",
-      "subtitle": "Startup billetterie · Lomé, Togo",
-      "period": "Janvier 2025 – Avril 2025",
+      "subtitle": "Lomé, Togo",
+      "period": "Janvier – Avril 2025",
       "tasks": [
-        "Conception et développement d'une app mobile billetterie (Flutter).",
-        "API Spring Boot sécurisée (Spring Security, JWT).",
-        "Intégration paiements Flooz/T‑Money et QR codes."
+        "App mobile billetterie Flutter : achat, gestion et validation de tickets en temps réel.",
+        "API REST Spring Boot sécurisée (JWT) avec intégration mobile money (Flooz/T-Money)."
       ]
     },
     {
       "title": "Développeur Logiciel (Stage)",
-      "company": "Ministère EPST",
-      "subtitle": "DPSSE · Lomé, Togo",
-      "period": "Juin – Nov 2024",
+      "company": "Ministère EPST (DPSSE)",
+      "subtitle": "Lomé, Togo",
+      "period": "Juin – Novembre 2024",
       "tasks": [
-        "Application desktop JavaFX connectée à PostgreSQL.",
-        "Architecture MVC, Spring Data JPA / Hibernate.",
-        "Exports statistiques PDF et Excel."
+        "Application desktop de gestion scolaire (JavaFX, Spring Boot, Hibernate, PostgreSQL).",
+        "Exports automatiques PDF/Excel pour les directions régionales."
       ]
     },
     {
       "title": "Développeur Web Full-Stack",
       "company": "TogoInnov Digital",
       "subtitle": "Lomé, Togo",
-      "period": "Jan – Mai 2024",
+      "period": "Janvier – Mai 2024",
       "tasks": [
-        "Plateforme freelances/entreprises : profils, offres, messagerie.",
-        "Déploiement VPS Linux (Nginx, SSL, PM2)."
+        "Plateforme de mise en relation freelances/entreprises. Déploiement VPS."
       ]
     },
     {
@@ -201,17 +287,8 @@
       "subtitle": "Clients PME (Togo & diaspora)",
       "period": "2023 – 2025",
       "tasks": [
-        "Sites vitrines et applications web sur mesure (React, Vue.js, Node.js).",
-        "Déploiement VPS Linux (Nginx, SSL), SEO technique."
-      ]
-    },
-    {
-      "title": "Formateur initiation à la programmation",
-      "company": "ESIBA Business School / association",
-      "subtitle": "Lomé, Togo",
-      "period": "2024",
-      "tasks": [
-        "Sessions d'initiation : exercices pratiques, bonnes pratiques, suivi."
+        "Sites vitrines et applications web sur mesure.",
+        "Déploiement VPS Linux, SEO technique."
       ]
     }
   ],

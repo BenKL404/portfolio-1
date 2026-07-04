@@ -67,6 +67,18 @@
       {
         "title": "Full-Stack & CI/CD",
         "description": "End-to-end delivery with deployment on Linux VPS, Docker and GitHub Actions pipelines for seamless production releases."
+      },
+      {
+        "title": "Designer at times",
+        "description": "I'm not the typical designer positioned behind Photoshop adjusting pixels. Immersed in stylesheets tweaking font sizes and contemplating layouts is where you'll find me (~_^)."
+      },
+      {
+        "title": "SEO Marketing",
+        "description": "Do you need your website to rank higher? There's a good chance SEO is hurting your website. I audit websites, identifying the most critical errors and resolving them."
+      },
+      {
+        "title": "Digital Marketing",
+        "description": "I identify and evaluate new digital technologies and use web analytics tools to measure site traffic to better optimize marketing campaigns."
       }
     ]
   },
@@ -79,35 +91,94 @@
     "title": "What I've built",
     "items": [
       {
-        "name": "LKM Player – Local Audio Player",
-        "type": "Open source project",
-        "description": "100% local Flutter mobile audio player: library scan, playlists, synced lyrics (.lrc, tags, API), equalizer, stats and suggestions. Zero account, zero ads, zero tracking.",
-        "highlights": ["Synced lyrics (3 sources)", "Background playback", "Clean Feature-First architecture", "Open source · MIT"]
-      },
-      {
-        "name": "TogoMarché — E-commerce marketplace",
-        "type": "Web project",
-        "description": "E-commerce marketplace: catalog, cart, search and modern UI. Edge deployment on Cloudflare Workers.",
-        "highlights": ["Edge deployment", "Modern UI", "Search & cart"]
+        "name": "LK Vault - Server and SSH Management",
+        "type": "Web App",
+        "description": "Server and SSH connections management tool with automated integration and deployment workflows.",
+        "highlights": ["Server management", "CI/CD Workflows", "Automated deployment"]
       },
       {
         "name": "LOKI — Loky Application",
-        "type": "Desktop application",
-        "description": "Electron desktop app to visually explore an existing PostgreSQL database (tables/views, filters, joins, quick queries) and export (Excel, PDF, CSV, PNG).",
-        "highlights": ["Advanced search", "Joins", "Exports (Excel/PDF/CSV/PNG)"]
+        "type": "Desktop App",
+        "description": "Electron desktop application to visually explore a PostgreSQL database (tables/views, filters, joins, quick queries) and export (Excel, PDF, CSV, PNG).",
+        "highlights": ["PostgreSQL Exploration", "Multiple Exports"]
       },
       {
         "name": "BLOC-SERVICE",
-        "type": "Web app",
-        "description": "Billing/control web app with OAuth authentication (Google, GitHub) and a simple processing workflow.",
-        "highlights": ["Google/GitHub OAuth", "Billing workflow", "Tracking & management"]
+        "type": "Web App",
+        "description": "Web app \"BLOC-SERVICE\": invoice and control management/tracking, with OAuth authentication (Google, GitHub) and processing workflow.",
+        "highlights": ["OAuth", "Invoicing Workflow"]
+      },
+      {
+        "name": "KoriTech (Proxima) - HR SaaS",
+        "type": "SaaS",
+        "description": "SaaS dedicated to human resources management: database architecture design and key features implementation.",
+        "highlights": ["HR Management", "DB Architecture"]
+      },
+      {
+        "name": "LKM Player – Audio Player",
+        "type": "Open Source Mobile App",
+        "description": "100% local mobile audio player: library scan, playlists, synchronized lyrics, equalizer, listening stats.",
+        "highlights": ["Synchronized lyrics", "Offline playback"]
+      },
+      {
+        "name": "TogoMarché — E-commerce Marketplace",
+        "type": "Marketplace",
+        "description": "Catalog, cart, search - edge deployed on Cloudflare Workers for the Togolese market.",
+        "highlights": ["Edge deployment", "Modern UI"]
+      },
+      {
+        "name": "UrgenceVie - Medical Platform",
+        "type": "Web App",
+        "description": "Emergency and blood donation management platform, connecting donors and medical centers in real-time with notifications.",
+        "highlights": ["Real-time", "Public Health"]
+      },
+      {
+        "name": "AlloArtisan - Matchmaking",
+        "type": "Mobile App",
+        "description": "Mobile application allowing users to find, contact and book local craftsmen for various jobs.",
+        "highlights": ["Booking", "Geolocation"]
+      },
+      {
+        "name": "StockBridge API",
+        "type": "Backend API",
+        "description": "High-availability REST API for multi-warehouse inventory management, supporting heavy load with advanced caching.",
+        "highlights": ["High Availability", "Caching"]
+      },
+      {
+        "name": "EduManager Desktop",
+        "type": "Desktop App",
+        "description": "Comprehensive school management software with automated PDF/Excel exports for grade tracking and invoicing.",
+        "highlights": ["MVC Architecture", "Automated Exports"]
+      },
+      {
+        "name": "TogoFreelance",
+        "type": "Web Platform",
+        "description": "Centralized matchmaking platform between Togolese companies and qualified digital freelancers.",
+        "highlights": ["Matchmaking", "Verified Profiles"]
+      },
+      {
+        "name": "PayTicket Pro API",
+        "type": "Fintech API",
+        "description": "Payment and ticketing gateway integrating Flooz and T-Money, with transaction management and secure QR Code generation.",
+        "highlights": ["Mobile Money", "Banking Security"]
+      },
+      {
+        "name": "CloudBuild CI",
+        "type": "DevOps Tool",
+        "description": "Custom continuous integration and deployment pipeline, analyzing code and deploying automatically on Linux containers.",
+        "highlights": ["Automation", "Continuous Deployment"]
       }
     ]
   },
   "skills": {
     "tag": "Skills",
     "title": "Tech Stack",
-    "categories": ["Frontend", "Backend", "Databases & DevOps"]
+    "categories": ["Frontend", "Backend", "Databases & DevOps"],
+    "description": [
+      "My approach to modern development revolves around several high-performance ecosystems. I use the MERN stack (MongoDB, Express, React, Node.js) to design full-fledged, dynamic web apps leveraging a 100% JavaScript-based toolkit.",
+      "For mobile development, I rely on Flutter, Google's powerful mobile framework based on Dart. It is a real game-changer for building fluid, cross-platform apps (iOS and Android) tailored for any screen.",
+      "Finally, I also master robust infrastructures like the LAMP/LEMP stack (Linux, Nginx/Apache, MySQL/PostgreSQL), providing a secure server environment that significantly speeds up the development and deployment process."
+    ]
   },
   "contact": {
     "tag": "Contact",
@@ -132,57 +203,73 @@
   },
   "experiences": [
     {
-      "title": "Full-Stack Developer (Remote)",
+      "title": "Founder & Lead Developer",
+      "company": "LKFondation",
+      "subtitle": "Lomé, Togo",
+      "period": "2025 – Present",
+      "tasks": [
+        "Creation and management of technical infrastructure and brand strategy.",
+        "Key projects: LK Vault, KoriTech / Proxima, UrgenceVie, AlloArtisan."
+      ]
+    },
+    {
+      "title": "Biometric Data Registration Operator",
+      "company": "ANID",
+      "subtitle": "Lomé, Togo",
+      "period": "Apr 2025 – Apr 2026",
+      "tasks": [
+        "Registration and verification of users' biometric data.",
+        "Welcoming and assisting citizens, respecting confidentiality procedures."
+      ]
+    },
+    {
+      "title": "Full-Stack Developer",
       "company": "BuildStack Labs",
-      "subtitle": "Cotonou, Benin",
+      "subtitle": "Cotonou, Benin (Remote)",
       "period": "Mar – Aug 2025",
       "tasks": [
-        "Built features on a SaaS platform (dashboard, notifications, exports).",
-        "CI/CD pipeline with GitHub Actions (lint, tests, deploy).",
-        "Worked with a distributed West Africa team."
+        "Developed new SaaS features (dashboards, notifications, exports).",
+        "CI/CD pipeline via GitHub Actions (lint, Jest tests, deployment) - 40% faster delivery."
       ]
     },
     {
-      "title": "Backend Developer (Remote)",
+      "title": "Backend Node.js Developer",
       "company": "DataBridge Inc.",
-      "subtitle": "Dakar, Senegal",
-      "period": "Jun – Nov 2024",
-      "tasks": [
-        "Designed and built REST APIs (Node.js/Express) with JWT authentication.",
-        "Improved performance with Redis caching on critical endpoints.",
-        "Implemented rate limiting and security hardening."
-      ]
-    },
-    {
-      "title": "Full-Stack Developer (Remote)",
-      "company": "Startup / Client",
-      "subtitle": "Abidjan, Côte d’Ivoire",
+      "subtitle": "Dakar, Senegal (Remote)",
       "period": "Sep – Dec 2024",
       "tasks": [
-        "Built internal tools and admin interfaces.",
-        "Remote collaboration with the engineering team."
+        "High availability REST API for multi-warehouse stock management (> 800 req/min).",
+        "Redis cache: -60% DB load on critical endpoints.",
+        "JWT/refresh tokens security + rate limiting."
+      ]
+    },
+    {
+      "title": "Full-Stack Developer",
+      "company": "Startup / Client",
+      "subtitle": "Abidjan, Côte d'Ivoire (Remote)",
+      "period": "Jun – Nov 2024",
+      "tasks": [
+        "Internal tools and management interfaces, remote collaboration."
       ]
     },
     {
       "title": "Full-Stack Developer (Internship)",
       "company": "PayTicket",
-      "subtitle": "Ticketing startup · Lomé, Togo",
+      "subtitle": "Lomé, Togo",
       "period": "Jan – Apr 2025",
       "tasks": [
-        "Built a Flutter ticketing app (purchase, management, validation).",
-        "Secured Spring Boot API (Spring Security, JWT).",
-        "Integrated Flooz/T‑Money payments and QR codes."
+        "Flutter mobile ticketing app: ticket purchase, management and real-time validation.",
+        "Secured Spring Boot REST API (JWT) with mobile money integration (Flooz/T-Money)."
       ]
     },
     {
       "title": "Software Developer (Internship)",
-      "company": "Ministry EPST",
-      "subtitle": "DPSSE · Lomé, Togo",
+      "company": "Ministry EPST (DPSSE)",
+      "subtitle": "Lomé, Togo",
       "period": "Jun – Nov 2024",
       "tasks": [
-        "JavaFX desktop app connected to PostgreSQL.",
-        "MVC architecture, Spring Data JPA / Hibernate.",
-        "Automated PDF and Excel statistical exports."
+        "Desktop school management application (JavaFX, Spring Boot, Hibernate, PostgreSQL).",
+        "Automated PDF/Excel exports for regional directorates."
       ]
     },
     {
@@ -191,27 +278,17 @@
       "subtitle": "Lomé, Togo",
       "period": "Jan – May 2024",
       "tasks": [
-        "Freelancers/companies platform: profiles, jobs, messaging.",
-        "Linux VPS deployment (Nginx, SSL, PM2)."
+        "Freelancers/companies matchmaking platform. VPS deployment."
       ]
     },
     {
       "title": "Freelance Web Developer",
       "company": "Self-employed",
-      "subtitle": "SME clients (Togo & diaspora)",
+      "subtitle": "SME Clients (Togo & diaspora)",
       "period": "2023 – 2025",
       "tasks": [
-        "Custom websites and web apps (React, Vue.js, Node.js).",
-        "Linux VPS deployment (Nginx, SSL) and technical SEO."
-      ]
-    },
-    {
-      "title": "Intro to Programming Trainer",
-      "company": "ESIBA Business School / association",
-      "subtitle": "Lomé, Togo",
-      "period": "2024",
-      "tasks": [
-        "Delivered beginner sessions: exercises, best practices, mentoring."
+        "Custom showcase sites and web applications.",
+        "Linux VPS deployment, technical SEO."
       ]
     }
   ],

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { RiMenuLine, RiCloseLine, RiSunLine, RiMoonLine } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import type { Theme } from '../hooks/useTheme';
 
@@ -25,10 +25,8 @@ export default function Header({ active, theme, onToggleTheme }: Props) {
     { id: 'home',     label: t('nav.home') },
     { id: 'about',    label: t('nav.about') },
     { id: 'services', label: t('nav.services') },
-    { id: 'resume',   label: t('nav.resume') },
     { id: 'projects', label: t('nav.projects') },
     { id: 'skills',   label: t('nav.skills') },
-    { id: 'contact',  label: t('nav.contact') },
   ];
 
   useEffect(() => {
@@ -42,19 +40,9 @@ export default function Header({ active, theme, onToggleTheme }: Props) {
     setOpen(false);
   };
 
-  const bg = isDark
-    ? scrolled ? 'rgba(10,10,10,0.88)' : 'rgba(10,10,10,0.45)'
-    : scrolled ? 'rgba(236,240,243,0.92)' : 'rgba(236,240,243,0.55)';
-
-  const border = scrolled
-    ? 'rgba(0,180,200,0.22)'
-    : isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)';
-
-  const shadow = scrolled
-    ? isDark
-      ? '0 4px 24px rgba(0,0,0,0.35)'
-      : '0 4px 24px rgba(0,0,0,0.07)'
-    : 'none';
+  const bg = scrolled ? 'var(--bg)' : 'transparent';
+  const border = scrolled ? '1px solid var(--line)' : '1px solid transparent';
+  const shadow = scrolled ? 'var(--neu-sm)' : 'none';
 
   return (
     <>
@@ -71,11 +59,11 @@ export default function Header({ active, theme, onToggleTheme }: Props) {
             className="w-full flex items-center justify-between px-5 py-3 rounded-2xl"
             style={{
               background: bg,
-              backdropFilter: 'blur(22px)',
-              WebkitBackdropFilter: 'blur(22px)',
-              border: `1px solid ${border}`,
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              border: border,
               boxShadow: shadow,
-              transition: 'background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease',
+              transition: 'all 0.25s ease',
             }}
           >
             <button onClick={() => go('home')} className="flex items-center gap-2.5 shrink-0">
@@ -90,14 +78,14 @@ export default function Header({ active, theme, onToggleTheme }: Props) {
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
                 style={{ background: 'var(--cyan-dim)', border: '1px solid var(--cyan-border)', color: 'var(--cyan)' }}
               >
-                {isDark ? <Sun size={14} /> : <Moon size={14} />}
+                {isDark ? <RiSunLine size={14} /> : <RiMoonLine size={14} />}
               </button>
               <button
                 onClick={() => setOpen(!open)}
                 className="p-1.5 rounded-lg"
                 style={{ color: 'var(--text-muted)' }}
               >
-                {open ? <X size={18} /> : <Menu size={18} />}
+                {open ? <RiCloseLine size={18} /> : <RiMenuLine size={18} />}
               </button>
             </div>
           </div>
@@ -128,11 +116,11 @@ export default function Header({ active, theme, onToggleTheme }: Props) {
               className="flex items-center gap-0.5 px-3 py-2 rounded-2xl"
               style={{
                 background: bg,
-                backdropFilter: 'blur(22px)',
-                WebkitBackdropFilter: 'blur(22px)',
-                border: `1px solid ${border}`,
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: border,
                 boxShadow: shadow,
-                transition: 'background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease',
+                transition: 'all 0.25s ease',
               }}
             >
               {NAV.map(({ id, label }) => {
@@ -169,7 +157,7 @@ export default function Header({ active, theme, onToggleTheme }: Props) {
                     transition={{ duration: 0.2 }}
                     className="flex items-center justify-center"
                   >
-                    {isDark ? <Sun size={14} /> : <Moon size={14} />}
+                    {isDark ? <RiSunLine size={14} /> : <RiMoonLine size={14} />}
                   </motion.span>
                 </AnimatePresence>
               </button>

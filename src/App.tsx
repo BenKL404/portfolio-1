@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp } from 'lucide-react';
+import { RiArrowUpLine } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
 import AnimatedBackground from './components/AnimatedBackground';
@@ -10,14 +10,13 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
-import Resume from './components/Resume';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
 
-const SECTIONS = ['home', 'about', 'services', 'resume', 'projects', 'skills', 'contact'];
+const SECTIONS = ['home', 'about', 'services', 'projects', 'skills', 'contact'];
 type Lang = 'fr' | 'en';
 
 function PortfolioPage() {
@@ -78,7 +77,6 @@ function PortfolioPage() {
         <Hero />
         <About />
         <Services />
-        <Resume />
         <Projects />
         <Skills />
         <Contact />
@@ -112,7 +110,7 @@ function PortfolioPage() {
                 style={{ transition: 'stroke-dashoffset 0.1s linear' }}
               />
             </svg>
-            <ArrowUp size={15} strokeWidth={2.5} style={{ color: 'var(--cyan)', position: 'relative' }} />
+            <RiArrowUpLine size={15} style={{ color: 'var(--cyan)', position: 'relative' }} />
           </motion.button>
         )}
       </AnimatePresence>

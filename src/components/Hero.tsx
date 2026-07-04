@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, ArrowRight, MapPin, Download } from 'lucide-react';
+import { RiGithubFill, RiLinkedinFill, RiTwitterXFill, RiArrowRightLine, RiMapPinLine, RiDownloadLine } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { personalInfo } from '../data/portfolio';
 
@@ -17,7 +17,6 @@ const FLAKES = Array.from({ length: 18 }, (_, i) => ({
 export default function Hero() {
   const { t } = useTranslation();
   const ROLES = personalInfo.roles;
-  const BIO_META = [{ Icon: MapPin, text: t('hero.available') }];
 
   const typedRef = useRef<HTMLSpanElement>(null);
   const roleIdx = useRef(0);
@@ -95,16 +94,13 @@ export default function Hero() {
                 {t('hero.greeting')}
               </p>
               <h1 className="font-bold leading-[1.05] tracking-tight mb-1"
-                style={{ fontSize: 'clamp(2rem, 5.5vw, 3.8rem)', color: 'var(--text)' }}>
+                style={{ fontSize: 'clamp(1.75rem, 4.5vw, 3rem)', color: 'var(--text)' }}>
                 Bernard Kokou
               </h1>
               <h1 className="font-bold leading-[1.05] tracking-tight mb-2"
-                style={{ fontSize: 'clamp(2rem, 5.5vw, 3.8rem)', color: 'var(--hero-name-dim)' }}>
-                Kpedzi
+                style={{ fontSize: 'clamp(1.75rem, 4.5vw, 3rem)', color: 'var(--cyan)' }}>
+                KPEDZI
               </h1>
-              <p className="text-base font-medium mb-5" style={{ color: 'var(--text-muted)' }}>
-                {t('hero.subtitle')}
-              </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.28 }}
@@ -123,26 +119,16 @@ export default function Hero() {
               <p className="text-sm leading-relaxed mb-1" style={{ color: 'var(--text-muted)' }}>
                 {t('hero.bio')}
               </p>
-              {BIO_META.map(({ Icon, text }, i) => (
-                <motion.div key={i}
-                  initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.45 + i * 0.08 }}
-                  className="flex items-center gap-2.5 text-xs mono"
-                  style={{ color: 'var(--text-muted)' }}>
-                  <Icon size={13} style={{ color: 'var(--cyan)', flexShrink: 0 }} />
-                  {text}
-                </motion.div>
-              ))}
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.48 }}
-              className="flex items-center gap-3 mb-10">
+              className="flex flex-wrap items-center gap-3 mb-10">
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="btn flex items-center gap-2"
                 style={{ background: 'var(--cyan)', color: 'var(--bg)', fontWeight: 600 }}
               >
-                {t('hero.cta_contact')} <ArrowRight size={14} />
+                {t('hero.cta_contact')} <RiArrowRightLine size={14} />
               </button>
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -151,22 +137,22 @@ export default function Hero() {
                 {t('hero.cta_projects')}
               </button>
               <a
-                href="../KPEDZI_KOKOU_BERNARD_SOFTWARE ENGINEER_CV_VERSION 2-1.pdf"
+                href="/KPEDZI-KOKOU-BERNARD-SOFTWARE-ENGINEER.pdf"
                 className="btn btn-ghost flex items-center gap-2"
-                download
+                download="KPEDZI-KOKOU-BERNARD-SOFTWARE-ENGINEER.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Download size={14} /> {t('hero.cta_cv')}
+                <RiDownloadLine size={14} /> {t('hero.cta_cv')}
               </a>
             </motion.div>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.58 }}
-              className="flex items-center gap-5">
+              className="flex flex-wrap items-center gap-4">
               {[
-                { Icon: Github,   href: personalInfo.github,   label: 'GitHub' },
-                { Icon: Linkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
-                { Icon: Twitter,  href: personalInfo.twitter,  label: 'X / Twitter' },
+                { Icon: RiGithubFill,   href: personalInfo.github,   label: 'GitHub' },
+                { Icon: RiLinkedinFill, href: personalInfo.linkedin, label: 'LinkedIn' },
+                { Icon: RiTwitterXFill,  href: personalInfo.twitter,  label: 'X / Twitter' },
               ].map(({ Icon, href, label }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-xs mono transition-colors"
@@ -183,10 +169,10 @@ export default function Hero() {
           {/* RIGHT */}
           <motion.div
             initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.65, delay: 0.25 }}
-            className="hidden lg:flex flex-col items-center gap-6"
+            className="flex flex-col items-center gap-6 mt-8 lg:mt-0"
           >
             {/* Photo frame */}
-            <div className="photo-frame w-full overflow-hidden" style={{ height: 320 }}>
+            <div className="photo-frame w-full overflow-hidden hidden md:block" style={{ height: 320 }}>
               <img
                 src="/photo.jpg"
                 alt="Bernard Kokou Kpedzi"
