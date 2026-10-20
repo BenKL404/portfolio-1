@@ -4,8 +4,23 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        sans: ['Archivo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+      },
+      // Couleurs pilotées par les variables CSS de src/index.css (thèmes clair / sombre)
+      colors: {
+        bg: 'var(--bg)',
+        'bg-2': 'var(--bg-2)',
+        fg: 'var(--fg)',
+        muted: 'var(--muted)',
+        rule: 'var(--rule)',
+        signal: 'var(--signal)',
+        'signal-text': 'var(--signal-text)',
+        ink: '#111110',
+        bone: '#efebe3',
+      },
+      maxWidth: {
+        page: '84rem',
       },
     },
   },

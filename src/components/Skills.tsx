@@ -1,7 +1,5 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from '../hooks/useInView';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import { skillCategories, techStack } from '../data/portfolio';
 import {
   SiReact, SiTypescript, SiVuedotjs, SiFlutter,
@@ -13,131 +11,73 @@ import {
 } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 import type { IconType } from 'react-icons';
+import { Reveal, SectionHead } from './ui';
 
-const TECH_ICONS: Record<string, { Icon: IconType; color: string }> = {
-  'React': { Icon: SiReact, color: '#61dafb' },
-  'Next.js': { Icon: SiNextdotjs, color: 'var(--text)' },
-  'TypeScript': { Icon: SiTypescript, color: '#3178c6' },
-  'Vue.js': { Icon: SiVuedotjs, color: '#42b883' },
-  'Tailwind CSS': { Icon: SiTailwindcss, color: '#38bdf8' },
-  'Sass': { Icon: SiSass, color: '#cc6699' },
-  'Flutter': { Icon: SiFlutter, color: '#54c5f8' },
-  'Node.js': { Icon: SiNodedotjs, color: '#5fa04e' },
-  'Express': { Icon: SiExpress, color: '#888' },
-  'Spring Boot': { Icon: SiSpringboot, color: '#6db33f' },
-  'Java': { Icon: FaJava, color: '#007396' },
-  'PostgreSQL': { Icon: SiPostgresql, color: '#336791' },
-  'MongoDB': { Icon: SiMongodb, color: '#47a248' },
-  'Redis': { Icon: SiRedis, color: '#dc382d' },
-  'MySQL': { Icon: SiMysql, color: '#4479a1' },
-  'Firebase': { Icon: SiFirebase, color: '#ffca28' },
-  'Docker': { Icon: SiDocker, color: '#2496ed' },
-  'GitHub Actions': { Icon: SiGithubactions, color: '#2088ff' },
-  'Nginx': { Icon: SiNginx, color: '#009639' },
-  'Linux VPS': { Icon: SiLinux, color: '#fcc624' },
-  'AWS': { Icon: SiAmazonwebservices, color: '#ff9900' },
-  'Cloudflare': { Icon: SiCloudflare, color: '#f38020' },
-  'Git': { Icon: SiGit, color: '#f05032' },
-  'Figma': { Icon: SiFigma, color: '#f24e1e' },
-  'Vite': { Icon: SiVite, color: '#646cff' },
-  'Vercel': { Icon: SiVercel, color: 'var(--text)' },
-  'Postman': { Icon: SiPostman, color: '#ff6c37' },
-  'Prisma': { Icon: SiPrisma, color: '#2d3748' },
-  'GraphQL': { Icon: SiGraphql, color: '#e10098' },
-  'Supabase': { Icon: SiSupabase, color: '#3ecf8e' },
+const TECH_ICONS: Record<string, IconType> = {
+  'React': SiReact, 'Next.js': SiNextdotjs, 'TypeScript': SiTypescript, 'Vue.js': SiVuedotjs,
+  'Tailwind CSS': SiTailwindcss, 'Sass': SiSass, 'Flutter': SiFlutter, 'Node.js': SiNodedotjs,
+  'Express': SiExpress, 'Spring Boot': SiSpringboot, 'Java': FaJava, 'PostgreSQL': SiPostgresql,
+  'MongoDB': SiMongodb, 'Redis': SiRedis, 'MySQL': SiMysql, 'Firebase': SiFirebase,
+  'Docker': SiDocker, 'GitHub Actions': SiGithubactions, 'Nginx': SiNginx, 'Linux VPS': SiLinux,
+  'AWS': SiAmazonwebservices, 'Cloudflare': SiCloudflare, 'Git': SiGit, 'Figma': SiFigma,
+  'Vite': SiVite, 'Vercel': SiVercel, 'Postman': SiPostman, 'Prisma': SiPrisma,
+  'GraphQL': SiGraphql, 'Supabase': SiSupabase,
 };
-
-function TechBadge({ tech, delay }: { tech: string; delay: number }) {
-  const [hov, setHov] = useState(false);
-  const entry = TECH_ICONS[tech];
-  const color = entry?.color ?? 'var(--accent)';
-  const Icon = entry?.Icon;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.25, delay }}
-      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      className="flex flex-col items-center gap-3 cursor-pointer transition-all duration-300 w-24"
-      style={{ transform: hov ? 'translateY(-4px)' : 'none' }}>
-      
-      {Icon
-        ? <Icon size={68} style={{ color: hov ? color : 'var(--text-muted)', transition: 'color 0.3s' }} />
-        : <span className="text-xl font-bold" style={{ color: hov ? color : 'var(--text-muted)', transition: 'color 0.3s' }}>{tech.slice(0, 2)}</span>
-      }
-      <span className="text-xs font-mono text-center leading-tight transition-all duration-300"
-        style={{ color: color, opacity: hov ? 1 : 0, transform: hov ? 'translateY(0)' : 'translateY(-5px)' }}>{tech}</span>
-    </motion.div>
-  );
-}
 
 export default function Skills() {
   const { t } = useTranslation();
-  const { ref, inView } = useInView({ threshold: 0.05 });
   const catLabels = t('skills.categories', { returnObjects: true }) as string[];
+  const paragraphs = t('skills.description', { returnObjects: true }) as string[];
 
   return (
-    <section id="skills" ref={ref}>
-      <div className="px-6 lg:px-16">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }} className="mb-12">
-          <p className="section-tag mb-3">{t('skills.tag')}</p>
-          <h2 className="text-3xl font-bold" style={{ color: 'var(--text)' }}>{t('skills.title')}</h2>
-        </motion.div>
+    <section id="skills" className="py-24 md:py-32 bg-bg-2">
+      <div className="max-w-page mx-auto px-4 sm:px-6 lg:px-10">
+        <SectionHead index="04" tag={t('skills.tag')} title={t('skills.title')} />
 
-        <div className="grid lg:grid-cols-3 gap-5 mb-10">
+        <div className="grid gap-12 lg:grid-cols-3 lg:gap-8">
           {skillCategories.map((cat, ci) => (
-            <motion.div key={cat.category}
-              initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: ci * 0.1 }}
-              className="rounded-2xl p-6" style={{ background: 'var(--bg)', boxShadow: 'var(--neu-out)' }}>
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 rounded-full" style={{ background: 'var(--text-muted)', boxShadow: 'var(--neu-in)' }} />
-                <p className="text-xs font-mono font-semibold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
-                  {catLabels[ci] ?? cat.category}
-                </p>
-              </div>
-              <div className="space-y-5">
-                {cat.skills.map((skill, si) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between items-baseline mb-2">
-                      <span className="text-xs font-medium" style={{ color: 'var(--text)' }}>{skill.name}</span>
-                      <span className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>{skill.level}%</span>
+            <Reveal key={cat.category} delay={ci * 0.05}>
+              <p className="kicker text-signal-text pb-3 border-b border-fg">{catLabels[ci] ?? cat.category}</p>
+              <ul>
+                {cat.skills.map(skill => (
+                  <li key={skill.name} className="py-4 border-b border-rule">
+                    <div className="flex justify-between items-baseline gap-4 mb-3">
+                      <span className="font-semibold">{skill.name}</span>
+                      <span className="meta text-muted">{skill.level}%</span>
                     </div>
-                    <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg)', boxShadow: 'var(--neu-in)' }}>
-                      <motion.div className="h-full rounded-full" style={{ background: 'var(--accent)' }}
-                        initial={{ width: 0 }}
-                        animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
-                        transition={{ duration: 1.1, delay: ci * 0.1 + si * 0.07, ease: [0.4, 0, 0.2, 1] }} />
+                    <div className="h-[3px] bg-rule" role="presentation">
+                      <motion.div
+                        className="h-full bg-signal origin-left"
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: skill.level / 100 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1] }}
+                      />
                     </div>
-                  </div>
+                  </li>
                 ))}
-              </div>
-            </motion.div>
+              </ul>
+            </Reveal>
           ))}
         </div>
 
-        <div style={{ borderTop: '1px solid var(--line)', paddingTop: '3rem' }}>
-          <p className="text-xs font-mono uppercase tracking-widest mb-8 text-center" style={{ color: 'var(--text-muted)' }}>
-            Technologies & outils
-          </p>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full mb-14 space-y-5 text-[15px] leading-relaxed"
-            style={{ color: 'var(--text-sub)' }}
-          >
-            {(t('skills.description', { returnObjects: true }) as string[]).map((paragraph, idx) => (
-              <p key={idx}>{paragraph}</p>
-            ))}
-          </motion.div>
+        <Reveal className="mt-20 grid gap-8 md:grid-cols-3 text-muted leading-relaxed">
+          {paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+        </Reveal>
 
-          <div className="flex flex-wrap justify-center gap-x-8 md:gap-x-12 gap-y-10 w-full">
-            {inView && techStack.map((tech, i) => (
-              <TechBadge key={tech} tech={tech} delay={0.1 + i * 0.03} />
-            ))}
-          </div>
+        <div className="mt-20">
+          <p className="kicker mb-6">{t('skills.tools')}</p>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 border-t border-l border-rule">
+            {techStack.map(tech => {
+              const Icon = TECH_ICONS[tech];
+              return (
+                <li key={tech} className="group border-r border-b border-rule flex items-center gap-3 px-4 py-4 hover:bg-fg hover:text-bg transition-colors">
+                  {Icon ? <Icon size={18} className="shrink-0 text-muted group-hover:text-signal transition-colors" /> : <span className="w-[18px] h-[18px] shrink-0 bg-rule" aria-hidden />}
+                  <span className="text-sm font-medium truncate">{tech}</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>

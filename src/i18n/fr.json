@@ -1,17 +1,15 @@
 {
   "nav": {
-    "home": "Accueil",
     "about": "À propos",
     "services": "Services",
-    "resume": "Parcours",
     "projects": "Projets",
     "skills": "Compétences",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Fermer"
   },
   "hero": {
-    "greeting": "Salut, je suis",
-    "subtitle": "Développeur logiciel",
-    "available": "Disponible · Lomé, Togo",
+    "available": "Localisé à Lomé",
     "bio": "Développeur passionné par la création d'applications web et mobiles performantes. Je construis des expériences soignées, du front au back, avec rigueur et créativité.",
     "cta_contact": "Me contacter",
     "cta_projects": "Projets",
@@ -20,25 +18,47 @@
       "projects": "Projets",
       "experience": "Ans d'exp.",
       "platforms": "Plateformes"
-    }
+    },
+    "kicker": "Ingénieur logiciel full-stack",
+    "line1": "Bernard Kokou",
+    "line2": "Kpedzi.",
+    "marquee": [
+      "Applications web",
+      "Logiciels de bureau",
+      "Apps mobiles",
+      "API & back-end",
+      "DevOps & CI/CD"
+    ]
   },
   "about": {
     "tag": "À propos",
     "title": "Qui suis-je",
-    "bio1": "Développeur full-stack passionné par la conception de solutions complètes — du front-end au back-end, du web au mobile. Clean code et performance avant tout.",
+    "bio1": "Développeur full-stack passionné par la conception de solutions complètes, du front-end au back-end et du web au mobile. Clean code et performance avant tout.",
     "bio2": "Fort d'une expérience concrète à travers des stages, des missions freelance et des projets personnels, je livre des applications robustes sur web, mobile et desktop.",
     "stats": {
       "experience": "ans d'exp.",
       "projects": "projets",
       "clients": "clients"
     },
-    "traits": ["Fast learner", "Autonome", "Agile / Scrum", "Clean Code", "SOLID"],
-    "links": {
-      "email": "Email",
-      "github": "GitHub",
-      "linkedin": "LinkedIn",
-      "twitter": "X"
-    }
+    "traits": [
+      "Fast learner",
+      "Autonome",
+      "Agile / Scrum",
+      "Clean Code",
+      "SOLID"
+    ],
+    "traits_title": "Soft skills",
+    "languages_title": "Langues",
+    "languages": [
+      {
+        "lang": "Français",
+        "level": "Courant"
+      },
+      {
+        "lang": "Anglais",
+        "level": "Technique"
+      }
+    ]
   },
   "services": {
     "tag": "Services",
@@ -82,103 +102,178 @@
       }
     ]
   },
-  "resume": {
-    "tag": "Parcours",
-    "title": "Expérience"
-  },
   "projects": {
     "tag": "Projets",
     "title": "Ce que j'ai construit",
-    "items": [
-      {
-        "name": "LK Vault - Gestion de serveurs et SSH",
-        "type": "Web App",
-        "description": "Outil de gestion de serveurs et connexions SSH avec workflows d'intégration et de déploiement automatisés.",
-        "highlights": ["Gestion de serveurs", "Workflows CI/CD", "Déploiement automatisé"]
+    "items": {
+      "lk-vault": {
+        "name": "LK Vault",
+        "type": "Application de bureau",
+        "description": "Client SSH / SFTP / VNC local-first : coffre-fort chiffré sur la machine (AES-256-GCM), terminal multi-onglets, éditeur Monaco intégré au SFTP, snippets diffusables sur plusieurs serveurs et copilote IA.",
+        "highlights": [
+          "Coffre-fort chiffré",
+          "Terminal multi-onglets",
+          "Copilote IA"
+        ]
       },
-      {
-        "name": "LOKI — Loky Application",
-        "type": "Desktop App",
-        "description": "Application desktop Electron pour explorer visuellement une base PostgreSQL (tables/vues, filtres, jointures, requêtes rapides) et exporter (Excel, PDF, CSV, PNG).",
-        "highlights": ["Exploration PostgreSQL", "Exports multiples"]
+      "loki": {
+        "name": "Loky",
+        "type": "Application de bureau",
+        "description": "Statistiques de l'éducation lisibles sans informaticien, sur une base PostgreSQL existante : tableau de pilotage, 71 indicateurs standards, audit de qualité des données, assistant IA texte → SQL et exports Excel, PDF, CSV. Lecture seule.",
+        "highlights": [
+          "Indicateurs",
+          "Audit de la base",
+          "Assistant IA"
+        ]
       },
-      {
-        "name": "BLOC-SERVICE",
-        "type": "Web App",
-        "description": "Web app \"BLOC-SERVICE\" : gestion/suivi des factures et contrôles, avec authentification OAuth (Google, GitHub) et workflow de traitement.",
-        "highlights": ["OAuth", "Workflow facturation"]
+      "lk-facture": {
+        "name": "LK-FACTURE",
+        "type": "Application web",
+        "description": "Facturation des services d'eau et d'électricité : relevés d'index, suivi des paiements et des retards, reçus PDF par e-mail, double authentification obligatoire.",
+        "highlights": [
+          "Facturation",
+          "Double authentification",
+          "Reçus PDF"
+        ]
       },
-      {
-        "name": "KoriTech (Proxima) - SaaS RH",
-        "type": "SaaS",
-        "description": "SaaS dédié à la gestion des ressources humaines : conception de l'architecture base de données et des fonctionnalités clés.",
-        "highlights": ["Gestion RH", "Architecture BDD"]
+      "koritech": {
+        "name": "KoriTech",
+        "type": "ERP RH",
+        "description": "ERP RH : employés, contrats, congés, paie et déclarations CNSS/IRPP, conforme à la Convention Collective Interprofessionnelle du Togo.",
+        "highlights": [
+          "Paie",
+          "Conformité Togo"
+        ]
       },
-      {
-        "name": "LKM Player – Lecteur Audio",
-        "type": "App Mobile Open Source",
-        "description": "Lecteur audio mobile 100% local : scan bibliothèque, playlists, paroles synchronisées, égaliseur, stats d'écoute.",
-        "highlights": ["Paroles synchronisées", "Lecture hors-ligne"]
+      "lkm-player": {
+        "name": "LKM Player",
+        "type": "App mobile open source",
+        "description": "Lecteur audio Android pour la musique locale : bibliothèque, playlists, paroles synchronisées, minuteur de sommeil, thèmes et couleur d'accent.",
+        "highlights": [
+          "Paroles synchronisées",
+          "Lecture hors-ligne"
+        ]
       },
-      {
-        "name": "TogoMarché — Marketplace e-commerce",
+      "togomarche": {
+        "name": "TogoMarché",
         "type": "Marketplace",
-        "description": "Catalogue, panier, recherche - déployé en edge sur Cloudflare Workers pour le marché togolais.",
-        "highlights": ["Déploiement edge", "Interface moderne"]
+        "description": "Marketplace e-commerce pour le marché togolais : catalogue, panier, recherche et messagerie, déployée en edge sur Cloudflare Workers.",
+        "highlights": [
+          "Déploiement edge",
+          "Mobile-first"
+        ]
       },
-      {
+      "urgencevie": {
         "name": "UrgenceVie - Plateforme Médicale",
         "type": "Web App",
         "description": "Plateforme de gestion des urgences et dons de sang, connectant donneurs et centres médicaux en temps réel avec notifications.",
-        "highlights": ["Temps réel", "Santé publique"]
+        "highlights": [
+          "Temps réel",
+          "Santé publique"
+        ]
       },
-      {
+      "alloartisan": {
         "name": "AlloArtisan - Mise en relation",
         "type": "Mobile App",
         "description": "Application mobile permettant aux utilisateurs de trouver, contacter et réserver des artisans locaux pour divers travaux.",
-        "highlights": ["Réservation", "Géolocalisation"]
+        "highlights": [
+          "Réservation",
+          "Géolocalisation"
+        ]
       },
-      {
+      "stockbridge": {
         "name": "StockBridge API",
         "type": "Backend API",
         "description": "API REST haute disponibilité pour la gestion de stocks multi-entrepôts, supportant une forte charge avec un système de cache avancé.",
-        "highlights": ["Haute disponibilité", "Mise en cache"]
+        "highlights": [
+          "Haute disponibilité",
+          "Mise en cache"
+        ]
       },
-      {
+      "edumanager": {
         "name": "EduManager Desktop",
         "type": "Desktop App",
         "description": "Logiciel de gestion scolaire complet avec exports PDF/Excel automatisés pour le suivi des notes et la facturation.",
-        "highlights": ["Architecture MVC", "Exports automatisés"]
+        "highlights": [
+          "Architecture MVC",
+          "Exports automatisés"
+        ]
       },
-      {
+      "togofreelance": {
         "name": "TogoFreelance",
         "type": "Web Platform",
         "description": "Plateforme centralisée de mise en relation entre entreprises togolaises et freelances qualifiés dans le numérique.",
-        "highlights": ["Mise en relation", "Profils vérifiés"]
+        "highlights": [
+          "Mise en relation",
+          "Profils vérifiés"
+        ]
       },
-      {
+      "payticket": {
         "name": "PayTicket Pro API",
         "type": "Fintech API",
         "description": "Passerelle de paiement et billetterie intégrant Flooz et T-Money, avec gestion des transactions et génération de QR Codes sécurisés.",
-        "highlights": ["Mobile Money", "Sécurité Bancaire"]
+        "highlights": [
+          "Mobile Money",
+          "Sécurité Bancaire"
+        ]
       },
-      {
+      "cloudbuild": {
         "name": "CloudBuild CI",
         "type": "DevOps Tool",
         "description": "Pipeline personnalisé d'intégration et de déploiement continu, analysant le code et déployant automatiquement sur des conteneurs Linux.",
-        "highlights": ["Automatisation", "Déploiement Continu"]
+        "highlights": [
+          "Automatisation",
+          "Déploiement Continu"
+        ]
+      },
+      "lk-immo": {
+        "name": "LK-IMMO",
+        "type": "Plateforme web",
+        "description": "Plateforme immobilière au Togo : location et vente de villas, appartements, chambres salon et terrains, annonces publiées par des démarcheurs identifiés.",
+        "highlights": [
+          "Annonces vérifiées",
+          "Espace agent"
+        ]
+      },
+      "pydm": {
+        "name": "PyDM",
+        "type": "Logiciel open source",
+        "description": "Gestionnaire de téléchargement pour Linux dans l'esprit d'IDM : jusqu'à 32 connexions par fichier, reprise après coupure, vidéos via yt-dlp et extension Firefox / Chrome.",
+        "highlights": [
+          "32 connexions",
+          "Extension navigateur"
+        ]
+      },
+      "lumen": {
+        "name": "Lumen",
+        "type": "Logiciel open source",
+        "description": "Lecteur vidéo pour Linux inspiré de PotPlayer : décodage matériel, reprise de lecture, YouTube et IPTV, sous-titres en ligne et thèmes. Distribué en AppImage.",
+        "highlights": [
+          "Décodage matériel",
+          "IPTV"
+        ]
       }
-    ]
+    },
+    "featured": "Projets phares",
+    "others": "Autres projets",
+    "private": "Code privé",
+    "live": "Voir le site",
+    "source": "Code source"
   },
   "skills": {
     "tag": "Compétences",
     "title": "Stack technique",
-    "categories": ["Frontend", "Backend", "Bases de données & DevOps"],
+    "categories": [
+      "Frontend",
+      "Backend",
+      "Bases de données & DevOps"
+    ],
     "description": [
       "Mon approche du développement moderne s'articule autour de plusieurs écosystèmes performants. J'utilise la stack MERN (MongoDB, Express, React, Node.js) pour concevoir des applications web complètes et dynamiques avec un outillage entièrement basé sur JavaScript.",
       "Pour le développement mobile, je m'appuie sur Flutter, le puissant framework de Google basé sur Dart. C'est un véritable atout qui me permet de créer des interfaces multiplateformes (iOS et Android) fluides et adaptatives pour n'importe quel écran.",
       "Enfin, je maîtrise également des infrastructures robustes comme la stack LAMP/LEMP (Linux, Nginx/Apache, MySQL/PostgreSQL), qui m'offre un environnement serveur sécurisé et accélère significativement le processus de développement et de déploiement."
-    ]
+    ],
+    "tools": "Technologies & outils"
   },
   "contact": {
     "tag": "Contact",
@@ -195,103 +290,29 @@
       "email_placeholder": "votre@email.com",
       "subject_placeholder": "Objet du message",
       "message_placeholder": "Décrivez votre projet..."
+    },
+    "intro": "Disponible pour des missions freelance, collaborations ou tout nouveau projet.",
+    "sent_title": "Message envoyé !",
+    "sent_body": "Je vous répondrai très prochainement.",
+    "sent_again": "Envoyer un autre message",
+    "sending": "Envoi…",
+    "labels": {
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "location": "Localisation"
     }
   },
   "footer": {
     "tagline": "Développeur Full-Stack · Lomé, Togo",
-    "rights": "Tous droits réservés"
+    "rights": "Tous droits réservés",
+    "language": "Langue",
+    "top": "Haut de page",
+    "cv": "CV",
+    "cv_fr": "Français",
+    "cv_en": "Anglais"
   },
-  "experiences": [
-    {
-      "title": "Fondateur & Lead Developer",
-      "company": "LKFondation",
-      "subtitle": "Lomé, Togo",
-      "period": "2025 – Présent",
-      "tasks": [
-        "Création et gestion de l'infrastructure technique et de la stratégie de marque.",
-        "Projets clés : LK Vault, KoriTech / Proxima, UrgenceVie, AlloArtisan."
-      ]
-    },
-    {
-      "title": "Opérateur d'Enregistrement de Données Biométriques",
-      "company": "ANID",
-      "subtitle": "Lomé, Togo",
-      "period": "Avril 2025 – Avril 2026",
-      "tasks": [
-        "Enregistrement et vérification des données biométriques des usagers.",
-        "Accueil et accompagnement des citoyens, respect des procédures de confidentialité."
-      ]
-    },
-    {
-      "title": "Développeur Full-Stack",
-      "company": "BuildStack Labs",
-      "subtitle": "Cotonou, Bénin (Remote)",
-      "period": "Mars – Août 2025",
-      "tasks": [
-        "Développement de nouvelles fonctionnalités SaaS (tableaux de bord, notifications, exports).",
-        "Pipeline CI/CD via GitHub Actions (lint, tests Jest, déploiement) - livraison accélérée de 40%."
-      ]
-    },
-    {
-      "title": "Développeur Backend Node.js",
-      "company": "DataBridge Inc.",
-      "subtitle": "Dakar, Sénégal (Remote)",
-      "period": "Septembre – Décembre 2024",
-      "tasks": [
-        "API REST haute disponibilité pour gestion de stocks multi-entrepôts (> 800 req/min).",
-        "Cache Redis : -60% de charge BD sur les endpoints sollicités.",
-        "Sécurisation JWT/refresh tokens + rate limiting."
-      ]
-    },
-    {
-      "title": "Développeur Full-Stack",
-      "company": "Startup / Client",
-      "subtitle": "Abidjan, Côte d'Ivoire (Remote)",
-      "period": "Juin – Novembre 2024",
-      "tasks": [
-        "Outils internes et interfaces de gestion, collaboration remote."
-      ]
-    },
-    {
-      "title": "Développeur Full-Stack (Stage)",
-      "company": "PayTicket",
-      "subtitle": "Lomé, Togo",
-      "period": "Janvier – Avril 2025",
-      "tasks": [
-        "App mobile billetterie Flutter : achat, gestion et validation de tickets en temps réel.",
-        "API REST Spring Boot sécurisée (JWT) avec intégration mobile money (Flooz/T-Money)."
-      ]
-    },
-    {
-      "title": "Développeur Logiciel (Stage)",
-      "company": "Ministère EPST (DPSSE)",
-      "subtitle": "Lomé, Togo",
-      "period": "Juin – Novembre 2024",
-      "tasks": [
-        "Application desktop de gestion scolaire (JavaFX, Spring Boot, Hibernate, PostgreSQL).",
-        "Exports automatiques PDF/Excel pour les directions régionales."
-      ]
-    },
-    {
-      "title": "Développeur Web Full-Stack",
-      "company": "TogoInnov Digital",
-      "subtitle": "Lomé, Togo",
-      "period": "Janvier – Mai 2024",
-      "tasks": [
-        "Plateforme de mise en relation freelances/entreprises. Déploiement VPS."
-      ]
-    },
-    {
-      "title": "Développeur Web Freelance",
-      "company": "Auto-entrepreneur",
-      "subtitle": "Clients PME (Togo & diaspora)",
-      "period": "2023 – 2025",
-      "tasks": [
-        "Sites vitrines et applications web sur mesure.",
-        "Déploiement VPS Linux, SEO technique."
-      ]
-    }
-  ],
   "cookies": {
     "title": "Nous utilisons des cookies 🍪",
     "description": "Ce site utilise des cookies pour améliorer votre expérience. En acceptant, vous consentez à leur utilisation conformément à notre politique de confidentialité.",
@@ -303,5 +324,9 @@
     "analytics": "Cookies analytiques",
     "analytics_desc": "Nous aident à comprendre comment vous utilisez le site (visites, pages vues).",
     "save": "Enregistrer mes préférences"
+  },
+  "theme": {
+    "light": "Thème clair",
+    "dark": "Thème sombre"
   }
 }

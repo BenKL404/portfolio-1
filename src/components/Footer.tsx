@@ -1,67 +1,56 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { personalInfo } from '../data/portfolio';
+import { RiDownloadLine } from 'react-icons/ri';
+import { cvFiles, personalInfo } from '../data/portfolio';
+import type { Lang } from '../App';
+import { scrollTo } from './ui';
 
-type Lang = 'fr' | 'en';
-
-export default function Footer() {
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const currentLang = i18n.language as Lang;
-
-  const switchLang = (l: Lang) => {
-    const newPath = location.pathname.replace(`/${currentLang}`, `/${l}`);
-    navigate(newPath || `/${l}`);
-  };
+export default function Footer({ lang, onSwitchLang }: { lang: Lang; onSwitchLang: (l: Lang) => void }) {
+  const { t } = useTranslation();
 
   return (
-    <footer style={{ borderTop: '1px solid var(--section-border)' }}>
-
-      {/* Lang switcher strip */}
-      <div className="flex items-center justify-center gap-0 px-6 py-8"
-        style={{ borderBottom: '1px solid var(--section-border)' }}>
-        <div className="flex items-center gap-4">
-          <span className="text-xs mono" style={{ color: 'var(--text-muted)' }}>
-            {currentLang === 'fr' ? 'Langue' : 'Language'}
-          </span>
-          <div className="flex items-center rounded-full overflow-hidden"
-            style={{ border: '1px solid var(--cyan-border)', background: 'var(--card)' }}>
-            {(['fr', 'en'] as Lang[]).map((l, i) => (
-              <button
-                key={l}
-                onClick={() => switchLang(l)}
-                className="relative flex items-center gap-2 px-5 py-2 text-sm font-semibold mono transition-all duration-200"
-                style={{
-                  background: currentLang === l ? 'var(--cyan)' : 'transparent',
-                  color: currentLang === l ? 'var(--bg)' : 'var(--text-muted)',
-                  borderRight: i === 0 ? '1px solid var(--cyan-border)' : 'none',
-                }}
-              >
-                <span className="text-base leading-none">
-                  {l === 'fr' ? '🇫🇷' : '🇬🇧'}
-                </span>
-                {l.toUpperCase()}
-                {currentLang === l && (
-                  <span className="w-1.5 h-1.5 rounded-full"
-                    style={{ background: 'var(--bg)', opacity: 0.6 }} />
-                )}
-              </button>
-            ))}
+    <footer className="invert-scope bg-bg text-fg">
+      <div className="max-w-page mx-auto px-4 sm:px-6 lg:px-10 pb-8">
+        <div className="border-t border-rule pt-10 grid gap-8 md:grid-cols-12 md:items-end">
+          <button onClick={() => scrollTo('home')} className="md:col-span-7 text-left" aria-label={t('footer.top')}>
+            <span className="display block text-[clamp(4rem,16vw,13rem)] leading-[0.8]">
+              Kpedzi<span className="text-signal">.</span>
+            </span>
+          </button>
+          <div className="md:col-span-5 flex flex-col gap-5 md:items-end">
+            <p className="text-muted">{t('footer.tagline')}</p>
+            <a href={`mailto:${personalInfo.email}`} className="font-medium link-underline">{personalInfo.email}</a>
+            <div className="flex items-center gap-3">
+              <span className="kicker text-muted">{t('footer.cv')}</span>
+              {([['fr', t('footer.cv_fr')], ['en', t('footer.cv_en')]] as const).map(([l, label]) => (
+                <a
+                  key={l}
+                  href={cvFiles[l]}
+                  download
+                  className="kicker flex items-center gap-1.5 px-3 py-1.5 border border-rule hover:border-fg hover:bg-fg hover:text-bg transition-colors"
+                >
+                  <RiDownloadLine size={14} /> {label}
+                </a>
+              ))}
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="kicker text-muted">{t('footer.language')}</span>
+              {(['fr', 'en'] as Lang[]).map(l => (
+                <button
+                  key={l}
+                  onClick={() => onSwitchLang(l)}
+                  aria-current={lang === l ? 'true' : undefined}
+                  className={`kicker px-3 py-1.5 border ${lang === l ? 'bg-fg text-bg border-fg' : 'border-rule text-muted hover:text-fg hover:border-fg'}`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="px-6 lg:px-14 py-6 flex flex-wrap items-center justify-between gap-3 text-xs mono"
-        style={{ color: 'var(--text-muted)' }}>
-        <span>Bernard Kokou Kpedzi · {t('footer.tagline')}</span>
-        <span>© 2025 · {t('footer.rights')}</span>
-        <a href={`mailto:${personalInfo.email}`}
-          onMouseEnter={e => (e.currentTarget.style.color = 'var(--cyan)')}
-          onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}>
-          {personalInfo.email}
-        </a>
+        <div className="mt-10 pt-5 border-t border-rule flex flex-wrap justify-between gap-3 meta text-muted">
+          <span>© {new Date().getFullYear()} {personalInfo.name}</span>
+          <span>{t('footer.rights')}</span>
+        </div>
       </div>
     </footer>
   );

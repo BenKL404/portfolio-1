@@ -1,64 +1,37 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from '../hooks/useInView';
 import { useTranslation } from 'react-i18next';
 import { RiEarthLine, RiSmartphoneLine, RiComputerLine, RiServerLine, RiDatabase2Line, RiStackLine, RiPencilRulerLine, RiSearchEyeLine, RiMegaphoneLine } from 'react-icons/ri';
+import { Reveal, SectionHead } from './ui';
 
 const ICONS = [RiEarthLine, RiSmartphoneLine, RiComputerLine, RiServerLine, RiDatabase2Line, RiStackLine, RiPencilRulerLine, RiSearchEyeLine, RiMegaphoneLine];
 
 export default function Services() {
   const { t } = useTranslation();
-  const { ref, inView } = useInView({ threshold: 0.1 });
   const items = t('services.items', { returnObjects: true }) as { title: string; description: string }[];
-  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="services" ref={ref}>
-      <div className="px-6 lg:px-16">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }} className="mb-12">
-          <p className="section-tag mb-3">{t('services.tag')}</p>
-          <h2 className="text-3xl font-bold" style={{ color: 'var(--text)' }}>{t('services.title')}</h2>
-        </motion.div>
+    <section id="services" className="py-24 md:py-32 bg-bg-2">
+      <div className="max-w-page mx-auto px-4 sm:px-6 lg:px-10">
+        <SectionHead index="02" tag={t('services.tag')} title={t('services.title')} />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-rule">
           {items.map(({ title, description }, i) => {
             const Icon = ICONS[i] || RiEarthLine;
-            const isHov = hovered === i;
             return (
-              <motion.div key={title}
-                initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, delay: i * 0.07 }}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                className="rounded-2xl p-6 flex flex-col gap-4 cursor-default transition-all duration-300"
-                style={{
-                  background: 'var(--bg)',
-                  boxShadow: isHov ? 'var(--neu-hover)' : 'var(--neu-out)',
-                  transform: isHov ? 'translateY(-3px)' : 'none',
-                }}>
-                {/* Icon badge - neutral neumorphic inset */}
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300"
-                  style={{
-                    background: 'var(--bg)',
-                    boxShadow: isHov ? 'var(--neu-out)' : 'var(--neu-in)',
-                  }}>
-                  <Icon size={20} style={{ color: isHov ? 'var(--accent)' : 'var(--text-muted)' }} />
-                </div>
-
-                <span className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>0{i + 1}</span>
-
-                <div>
-                  <h3 className="text-base font-semibold mb-2 transition-colors duration-300"
-                    style={{ color: 'var(--text)' }}>
-                    {title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-sub)' }}>{description}</p>
-                </div>
-              </motion.div>
+              <li key={title} className="border-r border-b border-rule">
+                <Reveal delay={(i % 3) * 0.05} className="group h-full p-6 md:p-8 flex flex-col gap-6 hover:bg-bg transition-colors">
+                  <div className="flex items-center justify-between">
+                    <span className="meta text-muted">{String(i + 1).padStart(2, '0')}</span>
+                    <Icon size={22} className="text-muted group-hover:text-signal transition-colors" />
+                  </div>
+                  <div>
+                    <h3 className="display text-3xl md:text-4xl mb-3">{title}</h3>
+                    <p className="leading-relaxed text-muted">{description}</p>
+                  </div>
+                </Reveal>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -1,9 +1,24 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cookie, X, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
+import { RiCloseLine, RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 
 const STORAGE_KEY = 'cookie_consent';
+
+function Toggle({ on, onClick, disabled }: { on: boolean; onClick?: () => void; disabled?: boolean }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      disabled={disabled}
+      onClick={onClick}
+      className={`shrink-0 w-10 h-5 p-0.5 flex border transition-colors ${on ? 'bg-signal border-signal' : 'bg-transparent border-rule'} disabled:opacity-70`}
+    >
+      <span className={`w-3.5 h-3.5 transition-transform ${on ? 'bg-[color:var(--on-signal)] translate-x-5' : 'bg-muted'}`} />
+    </button>
+  );
+}
 
 export default function CookieConsent() {
   const { t } = useTranslation();
@@ -12,181 +27,86 @@ export default function CookieConsent() {
   const [analytics, setAnalytics] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) setTimeout(() => setVisible(true), 1200);
+    let stored: string | null = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch { /* stockage indisponible */ }
+    if (!stored) {
+      const id = setTimeout(() => setVisible(true), 1200);
+      return () => clearTimeout(id);
+    }
   }, []);
 
   const save = (acceptAll: boolean) => {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({ necessary: true, analytics: acceptAll || analytics, date: Date.now() })
-    );
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ necessary: true, analytics: acceptAll || analytics, date: Date.now() })
+      );
+    } catch { /* stockage indisponible */ }
     setVisible(false);
   };
 
   return (
     <AnimatePresence>
       {visible && (
-        <>
-          {/* Backdrop blur (subtle) */}
-          <motion.div
-            className="fixed inset-0 z-[90]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{ backdropFilter: 'blur(2px)', background: 'rgba(0,0,0,0.18)' }}
-            onClick={() => save(false)}
-          />
-
-          {/* Modal */}
-          <motion.div
-            className="fixed bottom-0 sm:bottom-6 left-0 right-0 sm:left-1/2 z-[100] w-full sm:max-w-lg sm:px-4 px-0"
-            style={{ ['--tw-translate-x' as string]: undefined, margin: '0 auto' }}
-            initial={{ opacity: 0, y: 40, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 30, scale: 0.97 }}
-            transition={{ type: 'spring', bounce: 0.2, duration: 0.45 }}
-          >
-            <div
-              className="rounded-t-2xl sm:rounded-2xl p-5 relative overflow-y-auto"
-              style={{
-                maxHeight: '90dvh',
-                background: 'var(--card)',
-                border: '1px solid var(--cyan-border)',
-                boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
-              }}
-            >
-              {/* Close */}
-              <button
-                onClick={() => save(false)}
-                className="absolute top-4 right-4 p-1 rounded-lg opacity-50 hover:opacity-100 transition-opacity"
-                style={{ color: 'var(--text-muted)' }}
-              >
-                <X size={15} />
+        <motion.div
+          role="dialog"
+          aria-labelledby="cookie-title"
+          className="fixed bottom-0 sm:bottom-5 inset-x-0 sm:left-5 sm:right-auto z-[100] sm:max-w-md"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="bg-bg text-fg border border-fg p-5 shadow-[6px_6px_0_0_var(--signal)] max-h-[90dvh] overflow-y-auto">
+            <div className="flex items-start justify-between gap-4 mb-3">
+              <h3 id="cookie-title" className="display text-2xl">{t('cookies.title')}</h3>
+              <button onClick={() => save(false)} className="text-muted hover:text-fg" aria-label={t('nav.close')}>
+                <RiCloseLine size={18} />
               </button>
-
-              {/* Header */}
-              <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-                  style={{ background: 'var(--cyan-dim)', border: '1px solid var(--cyan-border)' }}
-                >
-                  <Cookie size={18} style={{ color: 'var(--cyan)' }} />
-                </div>
-                <h3 className="text-sm font-semibold" style={{ color: 'var(--text)' }}>
-                  {t('cookies.title')}
-                </h3>
-              </div>
-
-              {/* Description */}
-              <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
-                {t('cookies.description')}
-              </p>
-
-              {/* Expandable settings */}
-              <button
-                onClick={() => setExpanded(v => !v)}
-                className="flex items-center gap-1.5 text-xs font-medium mb-3 transition-colors"
-                style={{ color: 'var(--cyan)' }}
-              >
-                {expanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-                {t('cookies.settings')}
-              </button>
-
-              <AnimatePresence>
-                {expanded && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.22 }}
-                    className="overflow-hidden mb-4"
-                  >
-                    <div
-                      className="rounded-xl p-3 space-y-3"
-                      style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}
-                    >
-                      {/* Necessary */}
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <div className="flex items-center gap-1.5 mb-0.5">
-                            <ShieldCheck size={12} style={{ color: 'var(--cyan)' }} />
-                            <span className="text-xs font-medium" style={{ color: 'var(--text)' }}>
-                              {t('cookies.necessary')}
-                            </span>
-                          </div>
-                          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                            {t('cookies.necessary_desc')}
-                          </p>
-                        </div>
-                        {/* Always on toggle */}
-                        <div
-                          className="shrink-0 w-9 h-5 rounded-full flex items-center px-0.5"
-                          style={{ background: 'var(--cyan)' }}
-                        >
-                          <div className="w-4 h-4 rounded-full bg-white ml-auto" />
-                        </div>
-                      </div>
-
-                      {/* Analytics */}
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="text-xs font-medium mb-0.5" style={{ color: 'var(--text)' }}>
-                            {t('cookies.analytics')}
-                          </p>
-                          <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                            {t('cookies.analytics_desc')}
-                          </p>
-                        </div>
-                        {/* Toggle */}
-                        <button
-                          onClick={() => setAnalytics(v => !v)}
-                          className="shrink-0 w-9 h-5 rounded-full flex items-center px-0.5 transition-colors"
-                          style={{
-                            background: analytics ? 'var(--cyan)' : 'var(--border)',
-                            transition: 'background 0.2s ease',
-                          }}
-                        >
-                          <div
-                            className="w-4 h-4 rounded-full bg-white transition-transform"
-                            style={{ transform: analytics ? 'translateX(16px)' : 'translateX(0)' }}
-                          />
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Save preferences */}
-                    <button
-                      onClick={() => save(false)}
-                      className="mt-2 w-full py-2 text-xs font-semibold rounded-xl transition-opacity hover:opacity-80"
-                      style={{ background: 'var(--cyan-dim)', border: '1px solid var(--cyan-border)', color: 'var(--cyan)' }}
-                    >
-                      {t('cookies.save')}
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Action buttons */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() => save(false)}
-                  className="flex-1 py-2 text-xs font-medium rounded-xl transition-opacity hover:opacity-70"
-                  style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text-muted)' }}
-                >
-                  {t('cookies.decline')}
-                </button>
-                <button
-                  onClick={() => save(true)}
-                  className="flex-1 py-2 text-xs font-semibold rounded-xl transition-opacity hover:opacity-80"
-                  style={{ background: 'var(--cyan)', color: 'var(--bg)' }}
-                >
-                  {t('cookies.accept')}
-                </button>
-              </div>
             </div>
-          </motion.div>
-        </>
+            <p className="text-sm leading-relaxed text-muted mb-4">{t('cookies.description')}</p>
+
+            <button onClick={() => setExpanded(v => !v)} className="kicker flex items-center gap-1 text-signal-text mb-4" aria-expanded={expanded}>
+              {expanded ? <RiArrowUpSLine size={16} /> : <RiArrowDownSLine size={16} />}
+              {t('cookies.settings')}
+            </button>
+
+            <AnimatePresence initial={false}>
+              {expanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <div className="border-t border-rule mb-4">
+                    <div className="flex items-start justify-between gap-4 py-3 border-b border-rule">
+                      <div>
+                        <p className="text-sm font-semibold">{t('cookies.necessary')}</p>
+                        <p className="text-xs text-muted mt-0.5">{t('cookies.necessary_desc')}</p>
+                      </div>
+                      <Toggle on disabled />
+                    </div>
+                    <div className="flex items-start justify-between gap-4 py-3 border-b border-rule">
+                      <div>
+                        <p className="text-sm font-semibold">{t('cookies.analytics')}</p>
+                        <p className="text-xs text-muted mt-0.5">{t('cookies.analytics_desc')}</p>
+                      </div>
+                      <Toggle on={analytics} onClick={() => setAnalytics(v => !v)} />
+                    </div>
+                    <button onClick={() => save(false)} className="btn btn-line w-full mt-3 min-h-[2.5rem]">{t('cookies.save')}</button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <div className="flex gap-2">
+              <button onClick={() => save(false)} className="btn btn-line flex-1 min-h-[2.5rem]">{t('cookies.decline')}</button>
+              <button onClick={() => save(true)} className="btn btn-signal flex-1 min-h-[2.5rem]">{t('cookies.accept')}</button>
+            </div>
+          </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
