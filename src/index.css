@@ -128,6 +128,27 @@ body {
     transition: background-size 0.25s ease;
   }
   .link-underline:hover { background-size: 100% 1px; }
+
+  :root { --partial-mask: linear-gradient(135deg, #000 0%, #000 28%, transparent 48%, transparent 72%, #000 92%); }
+
+  /* Contour qui suit la silhouette d'une image détourée (PNG/WebP transparent),
+     masqué pour n'apparaître que par endroits (haut-gauche et bas-droite) */
+  .cutout-outline {
+    filter:
+      drop-shadow(1.5px 0 0 var(--fg)) drop-shadow(-1.5px 0 0 var(--fg))
+      drop-shadow(0 1.5px 0 var(--fg)) drop-shadow(0 -1.5px 0 var(--fg));
+    -webkit-mask-image: var(--partial-mask);
+            mask-image: var(--partial-mask);
+  }
+
+  /* Même contour partiel pour les images rectangulaires : cadre décalé autour de l'image */
+  .partial-frame {
+    position: absolute; inset: -0.5rem;
+    border: 1.5px solid var(--fg);
+    pointer-events: none;
+    -webkit-mask-image: var(--partial-mask);
+            mask-image: var(--partial-mask);
+  }
 }
 
 /* Animations — désactivées si l'utilisateur réduit les animations */

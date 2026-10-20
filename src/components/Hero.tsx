@@ -30,14 +30,25 @@ export default function Hero() {
             </div>
           </div>
           <div className="lg:col-span-5 mt-10 lg:mt-0 flex justify-center lg:justify-end">
-            <img
-              src="/photo-hero.webp"
-              alt="Bernard Kokou Kpedzi"
-              width={900}
-              height={992}
-              fetchPriority="high"
-              className="h-[clamp(18rem,72vw,26rem)] lg:h-[min(70vh,40rem)] max-w-full w-auto object-contain object-bottom select-none"
-            />
+            {/* Copie contourée (masquée par endroits) sous la photo nette */}
+            <div className="relative">
+              <img
+                src="/photo-hero.webp"
+                alt=""
+                aria-hidden
+                width={900}
+                height={992}
+                className="absolute inset-0 h-full w-full object-contain object-bottom select-none cutout-outline"
+              />
+              <img
+                src="/photo-hero.webp"
+                alt="Bernard Kokou Kpedzi"
+                width={900}
+                height={992}
+                fetchPriority="high"
+                className="relative h-[clamp(18rem,72vw,26rem)] lg:h-[min(70vh,40rem)] max-w-full w-auto object-contain object-bottom select-none"
+              />
+            </div>
           </div>
         </div>
 

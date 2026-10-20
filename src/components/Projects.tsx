@@ -44,13 +44,16 @@ export default function Projects() {
             const text = texts[p.id];
             const href = p.link.kind !== 'private' ? p.link.href : undefined;
             const Img = (
-              <div className="aspect-video overflow-hidden border border-fg bg-bg-2">
-                <img
-                  src={p.image}
-                  alt={text?.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                />
+              <div className="relative">
+                <span aria-hidden className="partial-frame" />
+                <div className="aspect-video overflow-hidden border border-fg bg-bg-2">
+                  <img
+                    src={p.image}
+                    alt={text?.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </div>
               </div>
             );
             return (
