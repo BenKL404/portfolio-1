@@ -23,9 +23,10 @@ export default function Hero() {
               <span className="rise" style={{ ['--i' as string]: 0 }}><span>{t('hero.line1')}</span></span>
               <span className="rise text-signal" style={{ ['--i' as string]: 1 }}><span>{t('hero.line2')}</span></span>
             </h1>
-            <div className="mt-5 md:mt-8">
+            {/* Taille relative à la largeur de la colonne (~13em de texte) pour tenir sur une ligne */}
+            <div className="mt-5 md:mt-8 [container-type:inline-size]">
               <p className="rise" style={{ ['--i' as string]: 2 }}>
-                <span className="display text-[clamp(1.45rem,4.6vw,4.25rem)] lg:text-[clamp(2.5rem,4vw,4rem)] whitespace-nowrap">{t('hero.kicker')}</span>
+                <span className="display [font-size:min(4.25rem,7.4cqi)] whitespace-nowrap">{t('hero.kicker')}</span>
               </p>
             </div>
           </div>

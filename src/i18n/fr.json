@@ -154,15 +154,6 @@
           "Lecture hors-ligne"
         ]
       },
-      "togomarche": {
-        "name": "TogoMarché",
-        "type": "Marketplace",
-        "description": "Marketplace e-commerce pour le marché togolais : catalogue, panier, recherche et messagerie, déployée en edge sur Cloudflare Workers.",
-        "highlights": [
-          "Déploiement edge",
-          "Mobile-first"
-        ]
-      },
       "urgencevie": {
         "name": "UrgenceVie - Plateforme Médicale",
         "type": "Web App",

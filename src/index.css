@@ -139,17 +139,7 @@ body {
       drop-shadow(0 1.5px 0 var(--fg)) drop-shadow(0 -1.5px 0 var(--fg));
     -webkit-mask-image: var(--partial-mask);
             mask-image: var(--partial-mask);
-  }
-
-  /* Même contour partiel pour les images rectangulaires : cadre décalé autour de l'image */
-  .partial-frame {
-    position: absolute; inset: -0.5rem;
-    border: 1.5px solid var(--fg);
-    pointer-events: none;
-    -webkit-mask-image: var(--partial-mask);
-            mask-image: var(--partial-mask);
-  }
-}
+  }}
 
 /* Animations — désactivées si l'utilisateur réduit les animations */
 @media (prefers-reduced-motion: no-preference) {

@@ -3,10 +3,10 @@ export const personalInfo = {
   phone: "+228 92 86 60 99",
   email: "kpedzibernard@gmail.com",
   location: "Lomé, Togo",
-  github: "https://github.com/BENLK404",
+  github: "https://github.com/BenKL404",
   linkedin: "https://www.linkedin.com/in/kokou-bernard-kpedzi-b47b2418a/",
   twitter: "https://x.com/BLKB44058",
-  githubUsername: "BENLK404",
+  githubUsername: "BenKL404",
   linkedinName: "Kokou Bernard Kpedzi",
 };
 
@@ -24,6 +24,7 @@ export interface Project {
   link: ProjectLink;
   image?: string;
   featured?: boolean;
+  bordered?: boolean; // bordure autour de la capture
 }
 
 // Textes (nom, type, description) : src/i18n/*.json → projects.items[id]
@@ -31,30 +32,27 @@ export const projects: Project[] = [
   { id: "lk-vault", year: "2025", featured: true, image: "/projects/lkvault.webp",
     stack: ["Electron", "React", "TypeScript", "Rust", "Prisma"],
     link: { kind: "live", href: "https://lkvault.lkfondation.com/" } },
-  { id: "lk-facture", year: "2024", featured: true, image: "/projects/lkfacture.webp",
+  { id: "lk-facture", year: "2024", featured: true, image: "/projects/lkfacture.webp", bordered: true,
     stack: ["Next.js", "Prisma", "PostgreSQL", "Auth.js"],
     link: { kind: "private" } },
-  { id: "koritech", year: "2025", featured: true, image: "/projects/koritech.webp",
+  { id: "koritech", year: "2025", featured: true, image: "/projects/koritech.webp", bordered: true,
     stack: ["Spring Boot", "Java", "React", "PostgreSQL"],
     link: { kind: "private" } },
   { id: "loki", year: "2025", featured: true, image: "/projects/loky.webp",
     stack: ["Electron", "React", "MUI", "PostgreSQL", "Prisma", "Groq"],
     link: { kind: "private" } },
-  { id: "lk-immo", year: "2026", featured: true, image: "/projects/lkimmo.webp",
+  { id: "lk-immo", year: "2026", featured: true, image: "/projects/lkimmo.webp", bordered: true,
     stack: ["React", "Vite", "TypeScript", "Tailwind CSS"],
     link: { kind: "live", href: "https://lk-immo.vercel.app/" } },
   { id: "pydm", year: "2026", featured: true, image: "/projects/pydm.webp",
     stack: ["Python", "Qt 6", "yt-dlp", "GPLv3"],
-    link: { kind: "source", href: "https://github.com/BENLK404/pydm" } },
+    link: { kind: "source", href: "https://github.com/BenKL404/pydm" } },
   { id: "lumen", year: "2026", featured: true, image: "/projects/lumen.webp",
     stack: ["Rust", "Qt 6 / QML", "libmpv"],
-    link: { kind: "source", href: "https://github.com/BENLK404/lumen" } },
+    link: { kind: "source", href: "https://github.com/BenKL404/lumen" } },
   { id: "lkm-player", year: "2025", featured: true, image: "/projects/lkmplayer.webp",
     stack: ["Flutter", "Dart", "FastAPI", "MIT"],
-    link: { kind: "source", href: "https://github.com/BENLK404/lkm-player" } },
-  { id: "togomarche", year: "2025", featured: true, image: "/projects/togomarche.webp",
-    stack: ["React", "Cloudflare Workers", "Edge"],
-    link: { kind: "live", href: "https://e-commerce.kpedzibernard.workers.dev/" } },
+    link: { kind: "source", href: "https://github.com/BenKL404/lkm-player" } },
   { id: "urgencevie", year: "2025",
     stack: ["Next.js", "Node.js", "PostgreSQL", "Socket.io"],
     link: { kind: "private" } },

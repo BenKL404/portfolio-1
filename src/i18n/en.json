@@ -154,15 +154,6 @@
           "Offline playback"
         ]
       },
-      "togomarche": {
-        "name": "TogoMarché",
-        "type": "Marketplace",
-        "description": "E-commerce marketplace for the Togolese market: catalogue, cart, search and messaging, deployed at the edge on Cloudflare Workers.",
-        "highlights": [
-          "Edge deployment",
-          "Mobile-first"
-        ]
-      },
       "urgencevie": {
         "name": "UrgenceVie - Medical Platform",
         "type": "Web App",
