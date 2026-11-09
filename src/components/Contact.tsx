@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RiArrowRightLine, RiCheckLine, RiErrorWarningLine, RiArrowRightUpLine } from 'react-icons/ri';
 import { personalInfo } from '../data/portfolio';
-import { Reveal } from './ui';
+import { Reveal, GhostIndex } from './ui';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
@@ -50,15 +50,18 @@ export default function Contact() {
   );
 
   return (
-    <section id="contact" className="invert-scope bg-bg text-fg py-24 md:py-32">
+    <section id="contact" className="invert-scope relative isolate overflow-hidden bg-bg text-fg py-24 md:py-32">
+      <div aria-hidden style={{ ['--dot' as string]: 'var(--signal)' }}
+        className="absolute -z-10 -right-40 -bottom-40 w-[42rem] aspect-square rounded-full pattern-dots fade-radial opacity-60" />
       <div className="max-w-page mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="border-t border-fg pt-5 mb-12 md:mb-16">
+        <div className="relative isolate border-t border-fg pt-5 mb-12 md:mb-16">
+          <GhostIndex index="05" />
           <div className="flex flex-wrap items-baseline justify-between gap-4 mb-6">
             <p className="kicker text-signal-text">05 / {t('contact.tag')}</p>
             <p className="kicker">{t('contact.available')}</p>
           </div>
           <Reveal>
-            <h2 className="display text-[clamp(3.5rem,12vw,11rem)]">{t('contact.title')}</h2>
+            <h2 className="display riso text-[clamp(3.5rem,12vw,11rem)]">{t('contact.title')}</h2>
           </Reveal>
         </div>
 

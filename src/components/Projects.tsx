@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { RiArrowRightUpLine, RiGithubFill, RiLockLine } from 'react-icons/ri';
 import { projects, type Project } from '../data/portfolio';
-import { Reveal, SectionHead } from './ui';
+import { Reveal, SectionHead, Tilt } from './ui';
 
 type ProjectText = { name: string; type: string; description: string; highlights?: string[] };
 
@@ -44,20 +44,23 @@ export default function Projects() {
             const text = texts[p.id];
             const href = p.link.kind !== 'private' ? p.link.href : undefined;
             const Img = (
-              <div className={`aspect-video overflow-hidden bg-bg-2 ${p.bordered ? 'border border-fg' : ''}`}>
-                <img
-                  src={p.image}
-                  alt={text?.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-              </div>
+              <Tilt className="relative isolate">
+                <span aria-hidden className="absolute inset-0 -z-10 translate-x-4 translate-y-4 pattern-hatch-signal" />
+                <div className={`lift-on-group duotone aspect-video overflow-hidden bg-bg-2 ${p.bordered ? 'border border-fg' : ''}`}>
+                  <img
+                    src={p.image}
+                    alt={text?.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </div>
+              </Tilt>
             );
             return (
               <Reveal key={p.id} className={wide(i) ? 'lg:col-span-2' : ''}>
                 <article className={`group ${wide(i) ? 'lg:grid lg:grid-cols-12 lg:gap-8 lg:items-end' : ''}`}>
                   <div className={wide(i) ? 'lg:col-span-8' : ''}>
-                    {href ? <a href={href} target="_blank" rel="noopener noreferrer" aria-label={text?.name}>{Img}</a> : Img}
+                    {href ? <a href={href} target="_blank" rel="noopener noreferrer" aria-label={text?.name} data-cursor={label[p.link.kind]}>{Img}</a> : Img}
                   </div>
                   <div className={`mt-5 ${wide(i) ? 'lg:col-span-4 lg:mt-0' : ''}`}>
                     <p className="meta text-muted flex gap-3">
@@ -86,10 +89,10 @@ export default function Projects() {
             {others.map(p => {
               const text = texts[p.id];
               return (
-                <li key={p.id} className="grid grid-cols-12 gap-x-4 gap-y-1 py-5 border-b border-rule items-baseline">
-                  <span className="col-span-2 md:col-span-1 meta text-muted">{p.year}</span>
+                <li key={p.id} className="group grid grid-cols-12 gap-x-4 gap-y-1 py-5 border-b border-rule items-baseline hover:border-fg transition-colors">
+                  <span className="col-span-2 md:col-span-1 display text-2xl text-muted group-hover:text-signal-text transition-colors">{p.year}</span>
                   <div className="col-span-10 md:col-span-5">
-                    <h3 className="font-semibold text-lg">{text?.name}</h3>
+                    <h3 className="font-semibold text-lg group-hover:translate-x-2 transition-transform">{text?.name}</h3>
                     <p className="text-sm text-muted mt-1 md:pr-6">{text?.description}</p>
                   </div>
                   <span className="hidden md:block md:col-span-2 kicker text-muted">{text?.type}</span>

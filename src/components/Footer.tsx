@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { RiDownloadLine } from 'react-icons/ri';
 import { cvFiles, personalInfo } from '../data/portfolio';
 import type { Lang } from '../App';
-import { scrollTo } from './ui';
+import { scrollTo, Stretchy } from './ui';
 
 export default function Footer({ lang, onSwitchLang }: { lang: Lang; onSwitchLang: (l: Lang) => void }) {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ export default function Footer({ lang, onSwitchLang }: { lang: Lang; onSwitchLan
         <div className="border-t border-rule pt-10 grid gap-8 md:grid-cols-12 md:items-end">
           <button onClick={() => scrollTo('home')} className="md:col-span-7 text-left" aria-label={t('footer.top')}>
             <span className="display block text-[clamp(4rem,16vw,13rem)] leading-[0.8]">
-              Kpedzi<span className="text-signal">.</span>
+              <Stretchy text="Kpedzi" className="riso" /><span className="text-signal">.</span>
             </span>
           </button>
           <div className="md:col-span-5 flex flex-col gap-5 md:items-end">

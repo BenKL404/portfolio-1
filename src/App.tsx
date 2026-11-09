@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useParams, useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig, useScroll, useSpring } from 'framer-motion';
 import { RiArrowUpLine } from 'react-icons/ri';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
@@ -13,7 +13,7 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
-import { scrollTo } from './components/ui';
+import { scrollTo, Cursor, OutlineBand } from './components/ui';
 
 const SECTIONS = ['home', 'about', 'services', 'projects', 'skills', 'contact'];
 export type Lang = 'fr' | 'en';
@@ -26,6 +26,7 @@ function PortfolioPage() {
   const [active, setActive] = useState('home');
   const [showTop, setShowTop] = useState(false);
   const { theme, toggle } = useTheme();
+  const progress = useSpring(useScroll().scrollYProgress, { stiffness: 200, damping: 30 });
 
   const currentLang: Lang = lang === 'en' || lang === 'fr' ? lang : 'fr';
 
@@ -64,12 +65,17 @@ function PortfolioPage() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen bg-bg text-fg">
+        <div className="grain" aria-hidden />
+        <Cursor />
+        {/* Progression du défilement */}
+        <motion.div aria-hidden style={{ scaleX: progress }} className="fixed top-0 inset-x-0 h-[3px] z-[65] bg-signal origin-left" />
         <Header active={active} theme={theme} onToggleTheme={toggle} lang={currentLang} onSwitchLang={switchLang} />
         <main>
           <Hero />
           <About />
           <Services />
           <Projects />
+          <OutlineBand items={t('hero.marquee', { returnObjects: true }) as string[]} />
           <Skills />
           <Contact />
         </main>

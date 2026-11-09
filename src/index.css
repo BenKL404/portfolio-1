@@ -139,14 +139,156 @@ body {
       drop-shadow(0 1.5px 0 var(--fg)) drop-shadow(0 -1.5px 0 var(--fg));
     -webkit-mask-image: var(--partial-mask);
             mask-image: var(--partial-mask);
-  }}
+  }
+
+  /* ─── Couche artistique : grain, trames, profondeur ─── */
+
+  /* Grain de papier fixe sur toute la page */
+  .grain {
+    position: fixed; inset: 0; z-index: 60; pointer-events: none;
+    opacity: 0.11;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Grille fine de plan d'architecte */
+  .pattern-grid {
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  /* Points en demi-teinte (couleur via --dot) */
+  .pattern-dots {
+    background-image: radial-gradient(var(--dot, var(--fg)) 1.2px, transparent 1.7px);
+    background-size: 12px 12px;
+  }
+  /* Hachures diagonales */
+  .pattern-hatch {
+    background-image: repeating-linear-gradient(-45deg, var(--rule) 0 1px, transparent 1px 9px);
+  }
+  .pattern-hatch-signal {
+    background-image: repeating-linear-gradient(-45deg, var(--signal) 0 2px, transparent 2px 7px);
+  }
+  /* Fondus pour estomper une trame vers les bords */
+  .fade-radial {
+    -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
+            mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
+  }
+  .fade-edges {
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 40%, #000 20%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 70% at 70% 40%, #000 20%, transparent 75%);
+  }
+
+  /* Texte en contour seul (grands chiffres d'arrière-plan) */
+  .stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--fg);
+  }
+  .stroke-signal { color: transparent; -webkit-text-stroke: 2px var(--signal); }
+
+  /* Impression risographe : deuxième passage cyan légèrement décalé */
+  .riso { text-shadow: 0.045em 0.045em 0 var(--signal); }
+  .riso-ink { text-shadow: 0.045em 0.045em 0 var(--fg); }
+
+  /* Duotone : capture en niveaux de gris teintée cyan, vraies couleurs au survol */
+  .duotone { position: relative; }
+  .duotone img { filter: grayscale(1) contrast(1.15); transition: filter 0.6s ease, transform 0.7s ease; }
+  .duotone::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: var(--signal); mix-blend-mode: multiply; opacity: 0.4;
+    transition: opacity 0.6s ease;
+  }
+  .group:hover .duotone img { filter: none; }
+  .group:hover .duotone::after { opacity: 0; }
+
+  /* Repère d'imprimerie (coin en L) */
+  .crop { position: absolute; width: 22px; height: 22px; border-color: var(--fg); pointer-events: none; }
+  .crop-tl { top: 0; left: 0; border-top-width: 1.5px; border-left-width: 1.5px; }
+  .crop-tr { top: 0; right: 0; border-top-width: 1.5px; border-right-width: 1.5px; }
+  .crop-bl { bottom: 0; left: 0; border-bottom-width: 1.5px; border-left-width: 1.5px; }
+  .crop-br { bottom: 0; right: 0; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+
+  /* Curseur : anneau en différence, seulement avec une souris */
+  .cursor {
+    position: fixed; top: 0; left: 0; z-index: 70; pointer-events: none;
+    width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 9999px;
+    background: #efebe3; mix-blend-mode: difference;
+    transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease;
+  }
+  .cursor.is-active { width: 72px; height: 72px; margin: -36px 0 0 -36px; }
+  .cursor { display: flex; align-items: center; justify-content: center; }
+  .cursor.is-label {
+    width: 110px; height: 110px; margin: -55px 0 0 -55px;
+    background: var(--signal); color: var(--on-signal); mix-blend-mode: normal;
+    text-align: center; padding: 0.75rem; line-height: 1.1;
+  }
+
+  /* Loupe en demi-teinte qui suit la souris */
+  .spotlight {
+    position: fixed; inset: 0; z-index: 55; pointer-events: none;
+    --dot: var(--signal); opacity: 0.45;
+    -webkit-mask-image: radial-gradient(180px circle at var(--mx, -500px) var(--my, -500px), #000, transparent 70%);
+            mask-image: radial-gradient(180px circle at var(--mx, -500px) var(--my, -500px), #000, transparent 70%);
+  }
+  @media (pointer: coarse) { .cursor, .spotlight { display: none; } }
+
+  /* Lettre qui s'élargit au survol */
+  .stretch-letter {
+    display: inline-block;
+    transition: font-stretch 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s ease, transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .stretch-letter:hover { font-stretch: 125%; color: var(--signal); transform: translateY(-0.06em); }
+
+  /* Lettrine d'imprimeur */
+  .dropcap::first-letter {
+    float: left; margin: 0.08em 0.12em 0 0;
+    font-size: 4.2em; line-height: 0.8; font-weight: 800; font-stretch: 68%;
+    color: var(--fg); text-shadow: 0.05em 0.05em 0 var(--signal);
+  }
+
+  /* Photo traitée comme un tirage : encre + passage cyan décalé + trame */
+  .photo-ink { filter: grayscale(1) contrast(1.2) brightness(1.04); transition: filter 0.6s ease; }
+  .group:hover .photo-ink { filter: none; }
+  /* Calque qui prend la forme de la silhouette de la photo détourée */
+  .silhouette {
+    -webkit-mask: url('/photo-hero.webp') bottom center / contain no-repeat;
+            mask: url('/photo-hero.webp') bottom center / contain no-repeat;
+  }
+  .photo-dots { --dot: var(--fg); opacity: 0.22; transition: opacity 0.6s ease; }
+  .group:hover .photo-dots { opacity: 0; }
+
+  /* Relief : l'élément se soulève et projette une ombre pleine cyan */
+  .lift {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .lift:hover, .group:hover .lift-on-group {
+    transform: translate(-10px, -10px);
+    box-shadow: 10px 10px 0 var(--signal);
+  }
+  .lift-on-group {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+/* Chaque ligne animée reste sur sa propre ligne, même sans animation */
+.rise { display: block; }
 
 /* Animations — désactivées si l'utilisateur réduit les animations */
 @media (prefers-reduced-motion: no-preference) {
   .rise { display: block; overflow: hidden; padding-block: 0.12em 0.1em; margin-block: -0.12em -0.1em; }
   .rise > span { display: block; animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 90ms); }
   .marquee { animation: marquee 40s linear infinite; }
+  .marquee-reverse { animation-direction: reverse; animation-duration: 55s; }
+  .spin-slow { animation: spin 22s linear infinite; }
+  .float { animation: float var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate; }
 }
+
+@keyframes float {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(var(--fx, 12px), var(--fy, -22px)) rotate(var(--fr, 25deg)); }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
 
 @keyframes rise { from { transform: translateY(105%); } }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
